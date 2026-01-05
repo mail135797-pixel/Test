@@ -1,0 +1,14 @@
+# Local large assets
+/input/
+/output/
+
+# Video files
+*.mp4
+*.mov
+*.mkv
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
