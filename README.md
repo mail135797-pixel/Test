@@ -6,6 +6,10 @@ This repo contains a small script that scans a video and extracts **Costco Japan
 
 - `deliverables/costco_price_cards_first_5min.pdf`
 
+## Output (full video)
+
+- `deliverables/costco_price_cards_full.pdf`
+
 ## How to run
 
 ```bash

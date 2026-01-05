@@ -229,12 +229,18 @@ def is_duplicate(hash_hex: str, existing: list[str], max_dist: int) -> bool:
 def iter_sampled_frames(
     cap: cv2.VideoCapture,
     fps: float,
+    start_seconds: float,
     max_seconds: float,
     sample_interval_s: float,
 ) -> Iterable[tuple[int, float, np.ndarray]]:
     step = max(1, int(round(fps * sample_interval_s)))
-    max_frame = int(round(fps * max_seconds))
-    frame_idx = 0
+    start_frame = int(round(fps * start_seconds))
+    max_frame = int(round(fps * (start_seconds + max_seconds)))
+
+    # Seek close to the requested start.
+    if start_frame > 0:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, start_frame)
+    frame_idx = int(cap.get(cv2.CAP_PROP_POS_FRAMES) or start_frame)
 
     # Sequential read is fastest/most reliable.
     while True:
@@ -243,7 +249,7 @@ def iter_sampled_frames(
             break
         if frame_idx > max_frame:
             break
-        if frame_idx % step == 0:
+        if frame_idx >= start_frame and (frame_idx - start_frame) % step == 0:
             yield frame_idx, frame_idx / fps, frame
         frame_idx += 1
 
@@ -264,10 +270,12 @@ def main() -> int:
     ap.add_argument("--video", required=True, help="Path to input video file")
     ap.add_argument("--out-dir", required=True, help="Output directory (will be created)")
     ap.add_argument("--minutes", type=float, default=5.0, help="How many minutes from start to process")
+    ap.add_argument("--start-seconds", type=float, default=0.0, help="Start time (seconds from beginning)")
     ap.add_argument("--sample-interval", type=float, default=0.5, help="Seconds between sampled frames")
     ap.add_argument("--blur-threshold", type=float, default=55.0, help="Laplacian variance threshold")
     ap.add_argument("--hash-dist", type=int, default=6, help="Max pHash distance to treat as duplicate")
     ap.add_argument("--min-crops", type=int, default=1, help="Fail if fewer crops are extracted")
+    ap.add_argument("--pdf-name", default="costco_price_cards.pdf", help="Output PDF filename")
     args = ap.parse_args()
 
     video_path = Path(args.video)
@@ -281,6 +289,7 @@ def main() -> int:
         raise SystemExit(f"Cannot open video: {video_path}")
 
     fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    start_seconds = max(0.0, float(args.start_seconds))
     max_seconds = max(0.0, float(args.minutes) * 60.0)
 
     kept_hashes: list[str] = []
@@ -292,7 +301,13 @@ def main() -> int:
 
     pbar_total = int(max_seconds / max(0.001, float(args.sample_interval))) + 1
     for frame_idx, t_sec, frame in tqdm(
-        iter_sampled_frames(cap, fps=fps, max_seconds=max_seconds, sample_interval_s=float(args.sample_interval)),
+        iter_sampled_frames(
+            cap,
+            fps=fps,
+            start_seconds=start_seconds,
+            max_seconds=max_seconds,
+            sample_interval_s=float(args.sample_interval),
+        ),
         total=pbar_total,
         desc="Scanning",
     ):
@@ -332,6 +347,7 @@ def main() -> int:
 
     meta: dict[str, Any] = {
         "video": str(video_path),
+        "start_seconds": start_seconds,
         "minutes_processed": float(args.minutes),
         "sample_interval_s": float(args.sample_interval),
         "fps": float(fps),
@@ -353,7 +369,7 @@ def main() -> int:
         )
 
     image_paths = [out_dir / r.path for r in results]
-    pdf_path = out_dir / "costco_price_cards_first_5min.pdf"
+    pdf_path = out_dir / str(args.pdf_name)
     build_pdf(image_paths, pdf_path)
 
     print(f"Saved {len(results)} unique cards to: {pdf_path}")
