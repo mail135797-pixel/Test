@@ -98,6 +98,11 @@ class AdsAgg:
     sp_auto_spend: float
     sp_own_pt_spend: float
     sp_comp_pt_spend: float
+    # Alternative "own" definition: advertised SKU vs other SKU
+    advertised_sku_sales: float
+    other_sku_sales: float
+    advertised_sku_spend_alloc: float
+    other_sku_spend_alloc: float
 
 
 def _sum_campaign_metrics(df: pd.DataFrame) -> dict[str, float]:
@@ -138,6 +143,8 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
         "広告がクリックされてから7日間の総売上高": "sales",
         "広告がクリックされてから7日間の合計注文数": "orders",
         "広告がクリックされてから7日間の合計販売数": "units",
+        "広告がクリックされてから7日間の広告された SKU の売上": "adv_sku_sales",
+        "広告がクリックされてから7日間のその他の SKU の売上": "other_sku_sales",
     }
     for c in num_cols:
         if c in df.columns:
@@ -151,6 +158,8 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
     sales = float(df["広告がクリックされてから7日間の総売上高"].sum())
     orders = float(df["広告がクリックされてから7日間の合計注文数"].sum())
     units = float(df["広告がクリックされてから7日間の合計販売数"].sum())
+    advertised_sku_sales = float(df["広告がクリックされてから7日間の広告された SKU の売上"].sum())
+    other_sku_sales = float(df["広告がクリックされてから7日間のその他の SKU の売上"].sum())
 
     # Counts from the report itself (SP only)
     portfolios = int(df["ポートフォリオ名"].dropna().astype(str).nunique()) if "ポートフォリオ名" in df.columns else 0
@@ -185,6 +194,16 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
     sp_own_pt_spend = float(df.loc[is_asin & is_own, "費用"].sum())
     sp_comp_pt_spend = float(df.loc[is_asin & ~is_own, "費用"].sum())
 
+    # Alternative allocation of spend between advertised vs other SKU sales.
+    # Allocate per-row spend proportional to sales components.
+    row_total_sales = df["広告がクリックされてから7日間の総売上高"]
+    adv_share = (df["広告がクリックされてから7日間の広告された SKU の売上"] / row_total_sales).replace([float("inf"), -float("inf")], 0).fillna(0)
+    other_share = (df["広告がクリックされてから7日間のその他の SKU の売上"] / row_total_sales).replace([float("inf"), -float("inf")], 0).fillna(0)
+    adv_share = adv_share.where(row_total_sales > 0, 0)
+    other_share = other_share.where(row_total_sales > 0, 0)
+    advertised_sku_spend_alloc = float((df["費用"] * adv_share).sum())
+    other_sku_spend_alloc = float((df["費用"] * other_share).sum())
+
     return AdsAgg(
         impressions=impressions,
         clicks=clicks,
@@ -203,6 +222,10 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
         sp_auto_spend=sp_auto_spend,
         sp_own_pt_spend=sp_own_pt_spend,
         sp_comp_pt_spend=sp_comp_pt_spend,
+        advertised_sku_sales=advertised_sku_sales,
+        other_sku_sales=other_sku_sales,
+        advertised_sku_spend_alloc=advertised_sku_spend_alloc,
+        other_sku_spend_alloc=other_sku_spend_alloc,
     )
 
 
@@ -278,6 +301,35 @@ def build_second_table(ads_before: AdsAgg, ads_after: AdsAgg) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=["항목", "before_sales", "after_sales", "before_spend", "after_spend"])
 
 
+def build_second_table_alt(ads_before: AdsAgg, ads_after: AdsAgg) -> pd.DataFrame:
+    # Alternative definition requested:
+    # "Own" = advertised SKU sales (広告されたSKUの売上), not "targeted ASIN is own".
+    rows = [
+        (
+            "자사(광고된 SKU) 매상 총합",
+            ads_before.advertised_sku_sales,
+            ads_after.advertised_sku_sales,
+            ads_before.advertised_sku_spend_alloc,
+            ads_after.advertised_sku_spend_alloc,
+        ),
+        (
+            "기타(그 외 SKU) 매상 총합",
+            ads_before.other_sku_sales,
+            ads_after.other_sku_sales,
+            ads_before.other_sku_spend_alloc,
+            ads_after.other_sku_spend_alloc,
+        ),
+        (
+            "총 매상(검색어 리포트)",
+            ads_before.sales,
+            ads_after.sales,
+            ads_before.spend,
+            ads_after.spend,
+        ),
+    ]
+    return pd.DataFrame(rows, columns=["항목", "before_sales", "after_sales", "before_spend_alloc", "after_spend_alloc"])
+
+
 def write_excel_first(df: pd.DataFrame, out_path: Path) -> None:
     with pd.ExcelWriter(out_path, engine="xlsxwriter") as writer:
         df.to_excel(writer, index=False, sheet_name="first_data")
@@ -332,13 +384,24 @@ def write_excel_first(df: pd.DataFrame, out_path: Path) -> None:
 
 
 def write_excel_second(df: pd.DataFrame, out_path: Path) -> None:
+    raise RuntimeError("Use write_excel_second_multi() instead")
+
+
+def write_excel_second_multi(df_main: pd.DataFrame, df_alt: pd.DataFrame, out_path: Path) -> None:
     with pd.ExcelWriter(out_path, engine="xlsxwriter") as writer:
-        df.to_excel(writer, index=False, sheet_name="second_data")
+        df_main.to_excel(writer, index=False, sheet_name="second_data")
+        df_alt.to_excel(writer, index=False, sheet_name="second_data_alt")
+
         wb = writer.book
-        ws = writer.sheets["second_data"]
         fmt_money = wb.add_format({"num_format": "#,##0"})
-        ws.set_column(0, 0, 40)
+
+        ws = writer.sheets["second_data"]
+        ws.set_column(0, 0, 44)
         ws.set_column(1, 4, 18, fmt_money)
+
+        ws2 = writer.sheets["second_data_alt"]
+        ws2.set_column(0, 0, 32)
+        ws2.set_column(1, 4, 20, fmt_money)
 
 
 def main() -> None:
@@ -373,11 +436,12 @@ def main() -> None:
 
     first = build_first_table(traffic_before, traffic_after, ads_before, ads_after)
     second = build_second_table(ads_before, ads_after)
+    second_alt = build_second_table_alt(ads_before, ads_after)
 
     out_first = ROOT / "first_data.xlsx"
     out_second = ROOT / "second_data.xlsx"
     write_excel_first(first, out_first)
-    write_excel_second(second, out_second)
+    write_excel_second_multi(second, second_alt, out_second)
 
     print("Wrote:", out_first)
     print("Wrote:", out_second)
