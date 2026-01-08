@@ -221,9 +221,14 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
         sp_pt["売上"] = 0
     asin = sp_pt.get("商品ターゲティング式", pd.Series([None] * len(sp_pt))).map(_extract_asin)
     sp_pt["target_asin"] = asin
-    is_own = sp_pt["target_asin"].isin({a.upper() for a in own_asins})
-    sp_own_pt_sales = float(sp_pt.loc[is_own, "売上"].sum())
-    sp_comp_pt_sales = float(sp_pt.loc[~is_own, "売上"].sum())
+    # IMPORTANT:
+    # 商品ターゲティング式 can be non-ASIN expressions (e.g. close-match/loose-match/complements/substitutes).
+    # Those are NOT "competitor ASIN targeting", so we must exclude them from own/competitor ASIN buckets.
+    sp_pt_asin = sp_pt.loc[sp_pt["target_asin"].notna()].copy()
+    own_upper = {a.upper() for a in own_asins}
+    is_own = sp_pt_asin["target_asin"].isin(own_upper)
+    sp_own_pt_sales = float(sp_pt_asin.loc[is_own, "売上"].sum())
+    sp_comp_pt_sales = float(sp_pt_asin.loc[~is_own, "売上"].sum())
 
     return AdsAgg(
         impressions=totals["impressions"],
