@@ -3,10 +3,12 @@
 Generate seller before/after summary Excel files from provided source reports.
 
 Inputs (default):
-  - /workspace/data/raw/file_1WSfWFB0Gkwc9WmlEwJ9aeUjBha6OSFNI.csv  (Before: traffic/Business report)
-  - /workspace/data/raw/file_13GTQvJU91pLXGKGOfxdIG6T6zzXk1m-N.csv  (After:  traffic/Business report)
-  - /workspace/data/raw/sheet_1InXM_M21D-foVVzP7nQwV-o09PiYUY9s.xlsx (Before: ads bulk/report)
-  - /workspace/data/raw/sheet_1maJin4HFjRV3UgU9iCJqWZIC0TtrxCRY.xlsx (After: ads bulk/report)
+  - Traffic / Business report (ASIN list + total sales):
+    - /workspace/data/raw/file_1WSfWFB0Gkwc9WmlEwJ9aeUjBha6OSFNI.csv
+    - /workspace/data/raw/file_13GTQvJU91pLXGKGOfxdIG6T6zzXk1m-N.csv
+  - Sponsored Products (SP) Search Term report (Before/After are auto-detected via min 開始日):
+    - /workspace/data/raw/sheet_1dcUxn-5Ih8vH1gVVtAXQ6c2wC0hexjMm.xlsx
+    - /workspace/data/raw/sheet_1BBW9mBpGd7nHmvMBeRRSHV0uRV_QIQkA.xlsx
 
 Outputs:
   - /workspace/first_data.xlsx
@@ -18,7 +20,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 import pandas as pd
 
@@ -123,131 +125,73 @@ def _extract_asin(expr: Any) -> str | None:
 
 
 def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
-    # Portfolio counts
-    pf = pd.read_excel(workbook_path, sheet_name="ポートフォリオ")
-    pf_status_col = "ステータス（情報提供のみ）"
-    portfolios = int(pf.loc[pf[pf_status_col].astype(str) == "有効", "ポートフォリオID"].nunique())
+    # This script version expects an SP Search Term report workbook with 1 sheet.
+    # Sheet name can vary; use the first sheet.
+    sheet0 = pd.ExcelFile(workbook_path).sheet_names[0]
+    df = pd.read_excel(workbook_path, sheet_name=sheet0)
 
-    # Campaign performance totals (avoid double-counting by using エンティティ == キャンペーン only)
-    totals = {"impressions": 0.0, "clicks": 0.0, "spend": 0.0, "sales": 0.0, "orders": 0.0, "units": 0.0}
-    campaign_ids: set[str] = set()
+    # Normalize numeric columns we need.
+    num_cols = {
+        "インプレッション": "impressions",
+        "クリック": "clicks",
+        "費用": "spend",
+        "広告がクリックされてから7日間の総売上高": "sales",
+        "広告がクリックされてから7日間の合計注文数": "orders",
+        "広告がクリックされてから7日間の合計販売数": "units",
+    }
+    for c in num_cols:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors="coerce").fillna(0)
+        else:
+            df[c] = 0
 
-    # SP
-    sp = pd.read_excel(workbook_path, sheet_name="スポンサープロダクト広告キャンペーン")
-    sp_campaign = sp.loc[(sp["エンティティ"] == "キャンペーン") & (sp["ステータス"] == "有効")].copy()
-    totals_sp = _sum_campaign_metrics(sp_campaign)
-    for k in totals:
-        totals[k] += totals_sp[k]
-    campaign_ids.update(sp_campaign["キャンペーンID"].dropna().astype(str).tolist())
+    impressions = float(df["インプレッション"].sum())
+    clicks = float(df["クリック"].sum())
+    spend = float(df["費用"].sum())
+    sales = float(df["広告がクリックされてから7日間の総売上高"].sum())
+    orders = float(df["広告がクリックされてから7日間の合計注文数"].sum())
+    units = float(df["広告がクリックされてから7日間の合計販売数"].sum())
 
-    # SB
-    sb = pd.read_excel(workbook_path, sheet_name="スポンサーブランド広告キャンペーン")
-    sb_campaign = sb.loc[(sb["エンティティ"] == "キャンペーン") & (sb["ステータス"] == "有効")].copy()
-    totals_sb = _sum_campaign_metrics(sb_campaign)
-    for k in totals:
-        totals[k] += totals_sb[k]
-    campaign_ids.update(sb_campaign["キャンペーンID"].dropna().astype(str).tolist())
-
-    # SD
-    sd = pd.read_excel(workbook_path, sheet_name="スポンサーディスプレイ広告キャンペーン")
-    sd_campaign = sd.loc[(sd["エンティティ"] == "キャンペーン") & (sd["ステータス"] == "有効")].copy()
-    totals_sd = _sum_campaign_metrics(sd_campaign)
-    for k in totals:
-        totals[k] += totals_sd[k]
-    campaign_ids.update(sd_campaign["キャンペーンID"].dropna().astype(str).tolist())
-
-    campaigns = int(len(campaign_ids))
-
-    # Ad groups count (SP + SD + SB複数広告グループ)
-    sp_adg = int(sp.loc[(sp["エンティティ"] == "広告グループ") & (sp["ステータス"] == "有効"), "広告グループID"].nunique())
-    sd_adg = int(sd.loc[(sd["エンティティ"] == "広告グループ") & (sd["ステータス"] == "有効"), "広告グループID"].nunique())
-    sb_multi = pd.read_excel(workbook_path, sheet_name="SB複数広告グループ")
-    sb_adg = 0
-    if not sb_multi.empty and "エンティティ" in sb_multi.columns and "広告グループID" in sb_multi.columns:
-        status_col = "状態" if "状態" in sb_multi.columns else "ステータス"
-        if status_col in sb_multi.columns:
-            sb_adg = int(
-                sb_multi.loc[(sb_multi["エンティティ"] == "広告グループ") & (sb_multi[status_col].astype(str) == "有効"), "広告グループID"].nunique()
-            )
-    ad_groups = int(sp_adg + sd_adg + sb_adg)
-
-    # Targeting count (keywords + product targeting + SD targetings)
-    targeting_keys: set[tuple[str, str]] = set()
-
-    # SP keywords + product targeting
-    if "キーワードID" in sp.columns:
-        ids = sp.loc[(sp["エンティティ"] == "キーワード") & (sp["ステータス"] == "有効"), "キーワードID"].dropna().astype(str)
-        targeting_keys.update({("sp_kw", i) for i in ids.tolist()})
-    if "商品ターゲティングID" in sp.columns:
-        ids = sp.loc[(sp["エンティティ"] == "商品ターゲティング") & (sp["ステータス"] == "有効"), "商品ターゲティングID"].dropna().astype(str)
-        targeting_keys.update({("sp_pt", i) for i in ids.tolist()})
-
-    # SB keywords + product targeting
-    if "キーワードID" in sb.columns:
-        ids = sb.loc[(sb["エンティティ"] == "キーワード") & (sb["ステータス"] == "有効"), "キーワードID"].dropna().astype(str)
-        targeting_keys.update({("sb_kw", i) for i in ids.tolist()})
-    if "商品ターゲティングID" in sb.columns:
-        ids = sb.loc[(sb["エンティティ"] == "商品ターゲティング") & (sb["ステータス"] == "有効"), "商品ターゲティングID"].dropna().astype(str)
-        targeting_keys.update({("sb_pt", i) for i in ids.tolist()})
-
-    # SD targetings
-    if "ターゲティングID" in sd.columns:
-        ids = sd.loc[(sd["エンティティ"].isin(["コンテキストターゲティング", "オーディエンスターゲティング"])) & (sd["ステータス"] == "有効"), "ターゲティングID"].dropna().astype(str)
-        targeting_keys.update({("sd_tg", i) for i in ids.tolist()})
-
-    targetings = int(len(targeting_keys))
-
-    # Avg bid (weighted by clicks) from search term reports (SP + SB)
-    bid_clicks = 0.0
-    bid_weighted_sum = 0.0
-    for sh in ["SP検索ワードレポート", "SB検索ワードレポート"]:
-        st = pd.read_excel(workbook_path, sheet_name=sh)
-        if "入札額" not in st.columns or "クリック数" not in st.columns:
-            continue
-        bids = pd.to_numeric(st["入札額"], errors="coerce").fillna(0)
-        clicks = pd.to_numeric(st["クリック数"], errors="coerce").fillna(0)
-        bid_weighted_sum += float((bids * clicks).sum())
-        bid_clicks += float(clicks.sum())
-    avg_bid = float(bid_weighted_sum / bid_clicks) if bid_clicks else 0.0
-
-    # Second dataset breakdown (SP-only)
-    # - auto sales: SP campaign rows where ターゲティングの種類 == オート
-    sp_auto_sales = 0.0
-    sp_auto_spend = 0.0
-    if "ターゲティングの種類" in sp_campaign.columns and "売上" in sp_campaign.columns:
-        sp_auto_sales = float(sp_campaign.loc[sp_campaign["ターゲティングの種類"].astype(str) == "オート", "売上"].sum())
-        sp_auto_spend = float(sp_campaign.loc[sp_campaign["ターゲティングの種類"].astype(str) == "オート", "支出"].sum())
-
-    # - own/competitor product targeting sales: SP product targeting entity rows
-    sp_pt = sp.loc[(sp["エンティティ"] == "商品ターゲティング") & (sp["ステータス"] == "有効")].copy()
-    if "売上" in sp_pt.columns:
-        sp_pt["売上"] = pd.to_numeric(sp_pt["売上"], errors="coerce").fillna(0)
+    # Counts from the report itself (SP only)
+    portfolios = int(df["ポートフォリオ名"].dropna().astype(str).nunique()) if "ポートフォリオ名" in df.columns else 0
+    campaigns = int(df["キャンペーン名"].dropna().astype(str).nunique()) if "キャンペーン名" in df.columns else 0
+    ad_groups = int(df["広告グループ名"].dropna().astype(str).nunique()) if "広告グループ名" in df.columns else 0
+    if "ターゲティング" in df.columns and "マッチタイプ" in df.columns:
+        targetings = int(df[["ターゲティング", "マッチタイプ"]].dropna().astype(str).drop_duplicates().shape[0])
+    elif "ターゲティング" in df.columns:
+        targetings = int(df["ターゲティング"].dropna().astype(str).nunique())
     else:
-        sp_pt["売上"] = 0
-    if "支出" in sp_pt.columns:
-        sp_pt["支出"] = pd.to_numeric(sp_pt["支出"], errors="coerce").fillna(0)
-    else:
-        sp_pt["支出"] = 0
-    asin = sp_pt.get("商品ターゲティング式", pd.Series([None] * len(sp_pt))).map(_extract_asin)
-    sp_pt["target_asin"] = asin
-    # IMPORTANT:
-    # 商品ターゲティング式 can be non-ASIN expressions (e.g. close-match/loose-match/complements/substitutes).
-    # Those are NOT "competitor ASIN targeting", so we must exclude them from own/competitor ASIN buckets.
-    sp_pt_asin = sp_pt.loc[sp_pt["target_asin"].notna()].copy()
+        targetings = 0
+
+    # Bid is not included in this report export; leave 0.
+    avg_bid = 0.0
+
+    # Second dataset breakdown (SP-only) from this report:
+    # - auto: rows where ターゲティング in auto buckets OR campaign name indicates auto
+    auto_targets = {"close-match", "loose-match", "substitutes", "complements"}
+    tgt = df["ターゲティング"].astype(str) if "ターゲティング" in df.columns else pd.Series([""] * len(df))
+    camp = df["キャンペーン名"].astype(str) if "キャンペーン名" in df.columns else pd.Series([""] * len(df))
+    is_auto = tgt.str.lower().isin(auto_targets) | camp.str.contains("オート", regex=False) | camp.str.contains("auto", case=False, regex=False)
+    sp_auto_sales = float(df.loc[is_auto, "広告がクリックされてから7日間の総売上高"].sum())
+    sp_auto_spend = float(df.loc[is_auto, "費用"].sum())
+
+    # - own/competitor ASIN targeting: rows where ターゲティング contains ASIN
+    asin = tgt.map(_extract_asin)
+    is_asin = asin.notna()
     own_upper = {a.upper() for a in own_asins}
-    is_own = sp_pt_asin["target_asin"].isin(own_upper)
-    sp_own_pt_sales = float(sp_pt_asin.loc[is_own, "売上"].sum())
-    sp_comp_pt_sales = float(sp_pt_asin.loc[~is_own, "売上"].sum())
-    sp_own_pt_spend = float(sp_pt_asin.loc[is_own, "支出"].sum())
-    sp_comp_pt_spend = float(sp_pt_asin.loc[~is_own, "支出"].sum())
+    is_own = asin.isin(own_upper)
+    sp_own_pt_sales = float(df.loc[is_asin & is_own, "広告がクリックされてから7日間の総売上高"].sum())
+    sp_comp_pt_sales = float(df.loc[is_asin & ~is_own, "広告がクリックされてから7日間の総売上高"].sum())
+    sp_own_pt_spend = float(df.loc[is_asin & is_own, "費用"].sum())
+    sp_comp_pt_spend = float(df.loc[is_asin & ~is_own, "費用"].sum())
 
     return AdsAgg(
-        impressions=totals["impressions"],
-        clicks=totals["clicks"],
-        spend=totals["spend"],
-        sales=totals["sales"],
-        orders=totals["orders"],
-        units=totals["units"],
+        impressions=impressions,
+        clicks=clicks,
+        spend=spend,
+        sales=sales,
+        orders=orders,
+        units=units,
         portfolios=portfolios,
         campaigns=campaigns,
         ad_groups=ad_groups,
@@ -398,14 +342,27 @@ def write_excel_second(df: pd.DataFrame, out_path: Path) -> None:
 
 
 def main() -> None:
-    # NOTE (validated from the data characteristics):
-    # - One workbook has *zero* AUTO spend/sales and *zero* OWN-ASIN targeting spend/sales.
-    #   The user indicated this corresponds to the "after" period (no own-product ads, no auto ads running).
-    # - The traffic CSV with smaller total sales is also treated as "after".
-    traffic_before_path = RAW / "file_13GTQvJU91pLXGKGOfxdIG6T6zzXk1m-N.csv"
-    traffic_after_path = RAW / "file_1WSfWFB0Gkwc9WmlEwJ9aeUjBha6OSFNI.csv"
-    ads_before_path = RAW / "sheet_1maJin4HFjRV3UgU9iCJqWZIC0TtrxCRY.xlsx"
-    ads_after_path = RAW / "sheet_1InXM_M21D-foVVzP7nQwV-o09PiYUY9s.xlsx"
+    # Determine before/after for traffic by total sales (smaller => earlier period).
+    traffic_paths = [
+        RAW / "file_1WSfWFB0Gkwc9WmlEwJ9aeUjBha6OSFNI.csv",
+        RAW / "file_13GTQvJU91pLXGKGOfxdIG6T6zzXk1m-N.csv",
+    ]
+    traffic_aggs = [(p, agg_traffic(p)) for p in traffic_paths]
+    traffic_aggs.sort(key=lambda x: x[1].total_sales)
+    traffic_before_path, traffic_after_path = traffic_aggs[0][0], traffic_aggs[1][0]
+
+    # Determine before/after for SP search-term workbooks by min 開始日 (earlier => before).
+    ads_paths = [
+        RAW / "sheet_1dcUxn-5Ih8vH1gVVtAXQ6c2wC0hexjMm.xlsx",
+        RAW / "sheet_1BBW9mBpGd7nHmvMBeRRSHV0uRV_QIQkA.xlsx",
+    ]
+    def min_start_date(p: Path) -> pd.Timestamp:
+        sh0 = pd.ExcelFile(p).sheet_names[0]
+        d = pd.read_excel(p, sheet_name=sh0, usecols=["開始日"])
+        return pd.to_datetime(d["開始日"], errors="coerce").min()
+
+    ads_paths.sort(key=min_start_date)
+    ads_before_path, ads_after_path = ads_paths[0], ads_paths[1]
 
     traffic_before = agg_traffic(traffic_before_path)
     traffic_after = agg_traffic(traffic_after_path)
