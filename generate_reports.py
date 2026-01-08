@@ -93,6 +93,9 @@ class AdsAgg:
     sp_auto_sales: float
     sp_own_pt_sales: float
     sp_comp_pt_sales: float
+    sp_auto_spend: float
+    sp_own_pt_spend: float
+    sp_comp_pt_spend: float
 
 
 def _sum_campaign_metrics(df: pd.DataFrame) -> dict[str, float]:
@@ -210,8 +213,10 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
     # Second dataset breakdown (SP-only)
     # - auto sales: SP campaign rows where ターゲティングの種類 == オート
     sp_auto_sales = 0.0
+    sp_auto_spend = 0.0
     if "ターゲティングの種類" in sp_campaign.columns and "売上" in sp_campaign.columns:
         sp_auto_sales = float(sp_campaign.loc[sp_campaign["ターゲティングの種類"].astype(str) == "オート", "売上"].sum())
+        sp_auto_spend = float(sp_campaign.loc[sp_campaign["ターゲティングの種類"].astype(str) == "オート", "支出"].sum())
 
     # - own/competitor product targeting sales: SP product targeting entity rows
     sp_pt = sp.loc[(sp["エンティティ"] == "商品ターゲティング") & (sp["ステータス"] == "有効")].copy()
@@ -219,6 +224,10 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
         sp_pt["売上"] = pd.to_numeric(sp_pt["売上"], errors="coerce").fillna(0)
     else:
         sp_pt["売上"] = 0
+    if "支出" in sp_pt.columns:
+        sp_pt["支出"] = pd.to_numeric(sp_pt["支出"], errors="coerce").fillna(0)
+    else:
+        sp_pt["支出"] = 0
     asin = sp_pt.get("商品ターゲティング式", pd.Series([None] * len(sp_pt))).map(_extract_asin)
     sp_pt["target_asin"] = asin
     # IMPORTANT:
@@ -229,6 +238,8 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
     is_own = sp_pt_asin["target_asin"].isin(own_upper)
     sp_own_pt_sales = float(sp_pt_asin.loc[is_own, "売上"].sum())
     sp_comp_pt_sales = float(sp_pt_asin.loc[~is_own, "売上"].sum())
+    sp_own_pt_spend = float(sp_pt_asin.loc[is_own, "支出"].sum())
+    sp_comp_pt_spend = float(sp_pt_asin.loc[~is_own, "支出"].sum())
 
     return AdsAgg(
         impressions=totals["impressions"],
@@ -245,6 +256,9 @@ def agg_ads(workbook_path: Path, own_asins: set[str]) -> AdsAgg:
         sp_auto_sales=sp_auto_sales,
         sp_own_pt_sales=sp_own_pt_sales,
         sp_comp_pt_sales=sp_comp_pt_sales,
+        sp_auto_spend=sp_auto_spend,
+        sp_own_pt_spend=sp_own_pt_spend,
+        sp_comp_pt_spend=sp_comp_pt_spend,
     )
 
 
@@ -295,11 +309,29 @@ def build_first_table(traffic_before: TrafficAgg, traffic_after: TrafficAgg, ads
 
 def build_second_table(ads_before: AdsAgg, ads_after: AdsAgg) -> pd.DataFrame:
     rows = [
-        ("자사 상품 타게팅 경유 매상의 총합", ads_before.sp_own_pt_sales, ads_after.sp_own_pt_sales),
-        ("오토 광고 경유 매상의 총합", ads_before.sp_auto_sales, ads_after.sp_auto_sales),
-        ("타사 상품 광고 경유 매상의 총합", ads_before.sp_comp_pt_sales, ads_after.sp_comp_pt_sales),
+        (
+            "자사 상품 타게팅 경유 매상(ASIN) 총합",
+            ads_before.sp_own_pt_sales,
+            ads_after.sp_own_pt_sales,
+            ads_before.sp_own_pt_spend,
+            ads_after.sp_own_pt_spend,
+        ),
+        (
+            "오토 광고 경유 매상 총합",
+            ads_before.sp_auto_sales,
+            ads_after.sp_auto_sales,
+            ads_before.sp_auto_spend,
+            ads_after.sp_auto_spend,
+        ),
+        (
+            "타사 상품(ASIN) 타게팅 경유 매상 총합",
+            ads_before.sp_comp_pt_sales,
+            ads_after.sp_comp_pt_sales,
+            ads_before.sp_comp_pt_spend,
+            ads_after.sp_comp_pt_spend,
+        ),
     ]
-    return pd.DataFrame(rows, columns=["항목", "before", "after"])
+    return pd.DataFrame(rows, columns=["항목", "before_sales", "after_sales", "before_spend", "after_spend"])
 
 
 def write_excel_first(df: pd.DataFrame, out_path: Path) -> None:
@@ -362,14 +394,18 @@ def write_excel_second(df: pd.DataFrame, out_path: Path) -> None:
         ws = writer.sheets["second_data"]
         fmt_money = wb.add_format({"num_format": "#,##0"})
         ws.set_column(0, 0, 40)
-        ws.set_column(1, 2, 18, fmt_money)
+        ws.set_column(1, 4, 18, fmt_money)
 
 
 def main() -> None:
-    traffic_before_path = RAW / "file_1WSfWFB0Gkwc9WmlEwJ9aeUjBha6OSFNI.csv"
-    traffic_after_path = RAW / "file_13GTQvJU91pLXGKGOfxdIG6T6zzXk1m-N.csv"
-    ads_before_path = RAW / "sheet_1InXM_M21D-foVVzP7nQwV-o09PiYUY9s.xlsx"
-    ads_after_path = RAW / "sheet_1maJin4HFjRV3UgU9iCJqWZIC0TtrxCRY.xlsx"
+    # NOTE (validated from the data characteristics):
+    # - One workbook has *zero* AUTO spend/sales and *zero* OWN-ASIN targeting spend/sales.
+    #   The user indicated this corresponds to the "after" period (no own-product ads, no auto ads running).
+    # - The traffic CSV with smaller total sales is also treated as "after".
+    traffic_before_path = RAW / "file_13GTQvJU91pLXGKGOfxdIG6T6zzXk1m-N.csv"
+    traffic_after_path = RAW / "file_1WSfWFB0Gkwc9WmlEwJ9aeUjBha6OSFNI.csv"
+    ads_before_path = RAW / "sheet_1maJin4HFjRV3UgU9iCJqWZIC0TtrxCRY.xlsx"
+    ads_after_path = RAW / "sheet_1InXM_M21D-foVVzP7nQwV-o09PiYUY9s.xlsx"
 
     traffic_before = agg_traffic(traffic_before_path)
     traffic_after = agg_traffic(traffic_after_path)
