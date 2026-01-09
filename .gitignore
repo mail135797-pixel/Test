@@ -1,0 +1,4 @@
+# Raw inputs (may contain sensitive seller data)
+data/raw/
+data/out/
+
