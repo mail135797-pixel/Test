@@ -1,0 +1,58 @@
+[
+  {
+    "frame": "frame_000008.jpg",
+    "box": [
+      0,
+      804,
+      1080,
+      337
+    ],
+    "phash": "f4a14b4a4b4f4b0f",
+    "item": "97357",
+    "price": 16.0,
+    "title": "RA BJ, ご                                                                                                                                                                                                                t rity 428R",
+    "crop": "97357_16_frame_000008.jpg_01.jpg"
+  },
+  {
+    "frame": "frame_000011.jpg",
+    "box": [
+      678,
+      241,
+      233,
+      169
+    ],
+    "phash": "ca174e5e354ab570",
+    "item": "583950",
+    "price": 98.0,
+    "title": "ネーダイ FINALY ファ5リー",
+    "crop": "583950_98_frame_000011.jpg_07.jpg"
+  },
+  {
+    "frame": "frame_000018.jpg",
+    "box": [
+      587,
+      288,
+      208,
+      164
+    ],
+    "phash": "db3dd05ba54aa512",
+    "item": "87821",
+    "price": 48.0,
+    "title": "여여                 ㅣ Otm IN WE",
+    "crop": "87821_48_frame_000018.jpg_04.jpg"
+  },
+  {
+    "frame": "frame_000020.jpg",
+    "box": [
+      550,
+      280,
+      220,
+      177
+    ],
+    "phash": "9b2dd25ba54aa552",
+    "item": "587821",
+    "price": 548.0,
+    "title": "AR TD           ーー   ： AMALIA 0",
+    "crop": "587821_548_frame_000020.jpg_02.jpg"
+  }
+]
