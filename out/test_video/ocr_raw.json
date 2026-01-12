@@ -1,0 +1,937 @@
+[
+  {
+    "frame": "frame_000001.jpg",
+    "meta": {
+      "variant": "norm",
+      "score": 7,
+      "nums": 0,
+      "words": 7
+    },
+    "text": "' %\n‘ \\ .\n~ ws\n",
+    "parsed": {
+      "Title": "' % ‘ \\ .",
+      "ItemNo": "",
+      "Price": "",
+      "FinalPrice": "",
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000002.jpg",
+    "meta": {
+      "variant": "norm",
+      "score": 8,
+      "nums": 0,
+      "words": 8
+    },
+    "text": ", =,\n레 - ~\n\n… a\n\n~\n",
+    "parsed": {
+      "Title": ", =, 레 - ~",
+      "ItemNo": "",
+      "Price": "",
+      "FinalPrice": "",
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000003.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 17,
+      "nums": 4,
+      "words": 9
+    },
+    "text": " . ^\noD | 2002 ~ I\nf+ a\n",
+    "parsed": {
+      "Title": ". ^ f+ a",
+      "ItemNo": "",
+      "Price": 2002.0,
+      "FinalPrice": "",
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000004.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 96,
+      "nums": 17,
+      "words": 62
+    },
+    "text": "So 2. ~\nond\nPe y\n\n; a\n\nI oS\n\nGn ) -\n\ni 280 fhe. [\n\npom I ry 0\n\n. a\n\n00” ( .\n~ * ' \" 4 , 0\n\nVt ~ 고 0001 4\nme ft |\n\n0 1 가 1 ip fo 고역\n\nEI |\n\nee souls\n\n—r\n\na i\n\net 이 ane\n\nmfitfor re I, .»\n",
+    "parsed": {
+      "Title": "ond Pe y",
+      "ItemNo": "",
+      "Price": 280.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000005.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 297,
+      "nums": 70,
+      "words": 157
+    },
+    "text": "_ me | PS\nPlt, | SY a\niin ~ | —\n2980, . Jee 7 ~\n\n7 ‘ 22 7 _—_ 이\n{ J Liy _ ~\n~ Ay Bl 1. ~\n\n~ ~ ~ ~ 나\n\n그 \"~ 2 에\n\n개 (ey ns — yA v8 Logi, ：\n\n노아 - 준오 es 오 > Pa\n\n| =<] 도가\n\n. 288 ae\n\n0000 머 00> tiie\n\n00000 NACE if\n\nfea “¥% =| &! 6 yal f r He\n\nse Tense =e bie\n\n1891 1351 [221 732 iil [jd HBR,\n\n=a5: 489 ee | TIROHARTA RTT\n\n2 883 Xa AR2 i fi 이 족히 i\n\nBt [Ref alt. PY rlpe' Ka 00170\n\na <= Pox oy .\nit a ~ an\n[2 \"So EJ [=\n= , 00000 vo 는 는 ~\n\n= 00000\n\nTEN 0005 \" 벌 !\n\nTee | 거머 | Serge re nd 려 '\n\n지그 SN} - 내\n\noo [Sort tases tees ee\n",
+    "parsed": {
+      "Title": "_ me | PS Plt, | SY a",
+      "ItemNo": "",
+      "Price": 2980.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000006.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 189,
+      "nums": 22,
+      "words": 145
+    },
+    "text": "ot ~\n배우 bes 스스 ~\nSuk ) EE\nee ST “Seay\na peaiee 는 / ~~\nwe. SS!\n~ J SS\n\\ = fd ° aay a\n“J a <\nCis ar ny i aL.\n아아아 = a or > 3m 6\nSe = oe oe ‘c= pete\n= ee\n————— 1,928\ni ddl HT 10000 fii EEE\nze WE 바리 시 MEME aE sift\n= Ea 5 oe TY ent 대 소스\nfi] Hy i] yas Fi i ~ ) [일 [if\n| YAY il il il i Lele lt\nWE! Pet pe ol eae! GH GH Et p= Pt ge\n=o Fon!) eet fe ie\n308 i= 2380 ae 나이,\npS - 0!\n~ 주 ~ ale, 구사\n~ 0: , 기 [Sa Shoe\na 0 ~ 일 ith}ss\\ oie\nke | TP Teed es BEE\net Eee tr = Ql sf\n",
+    "parsed": {
+      "Title": "ot ~ 배우 bes 스스 ~",
+      "ItemNo": "",
+      "Price": 10000.0,
+      "FinalPrice": 3.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000007.jpg",
+    "meta": {
+      "variant": "gray",
+      "score": 277,
+      "nums": 33,
+      "words": 211
+    },
+    "text": "_——\nia > ~\n~\n770\n“a\n「 aa\n|. >\n2 |\n~ ~ J y\n. pe i 호 .\nLins 5\nSea ee 0 226 :\n전 = 7 ty;\nWAR = ~ )\n=> Go 9 \" PLux:\nbE Tere 고 」\n~ inn O53 Tolac@< | 제재 2\nx ~\ni=) i] - Ta\n| : s 글 Fo @\n: fi i coat FGM ge 28 a\nBs. : 을 4 a a STs ;\n| a a ㆍ a2 그 5\n‘ a a a 3 fy | #2 a3\n주 도 g v 더 과 『 iE ff H\nths ii th é Fs x ‘ 호\n— oe 아타 이겨 9 ~ 이 Oe @ 대 ee _ _\nen Sid alias\nㅎㅎ Se Sa TT T) T rel xo ‘\nes 3 es +) a5 rf :\nee HT eT | nf] 8s 82 3\na ” ” 7) a a |. Be a? ;\ng g : £ : : | Ba 4 i\nrs ik i ~ ths ths he\n가 ~ ~ /  ,\nㆍ us\nSEEK Shed ocho.\n—_ ERR ®\n) ~ 본\n'\n'\n—_\n— por 비애,\n5 Se SN 5\nn _—, -\n",
+    "parsed": {
+      "Title": "_—— ia > ~",
+      "ItemNo": "",
+      "Price": 770.0,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000008.jpg",
+    "meta": {
+      "variant": "gray",
+      "score": 285,
+      "nums": 38,
+      "words": 209
+    },
+    "text": "- ~ 0\ni ————\n- ~\n/ >\n\"개 >\nrally\n~ \"1\n— : » 3\n| 개 a\n“, Lux,\n— a Say Oe Pay 수 | 4\nka Te * aa\n=> 내 = f\n점 고\n100, rr, -\n009 Tolan 9 i\nlinn ~\n11) Hj\n| j pI re) 2 ㆍ ㅇ\nSf Th Od: fi 0 Daas\n)? x e a Ps 고 #> #5 es\n[ a 2 ep BR\n“ é 「: ; 분 Fi Z a?) ge ae\n— . . 00 oF & ihe ii 「 * as 2\na \"을 0! | ~ 6\n개 ne Pe ee ns\n* 3 *s% ee is fs 5a PEile xo - x x\na & | 을 더 eg br | Be ge\nf Bf ae Ge gg a8 | 83 = Rs | Be\ng a a \"을 ; #3 가 fp :\n1 a | 85 'F 'F\n4 로 g rd f e eR, 9 8? OG :\ntts the th the i rs 「 s e a\n= 으 ㆍ | ee et OE | te ee\n| one\ncent tnddes .\nERa 7)\n|\n3 2\n—\n| | “pa, =\n5d\nn\n",
+    "parsed": {
+      "Title": "i ———— - ~",
+      "ItemNo": "",
+      "Price": 100.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000009.jpg",
+    "meta": {
+      "variant": "norm",
+      "score": 118,
+      "nums": 20,
+      "words": 78
+    },
+    "text": "— ——_\nRin\nRe 석 ' ~ 글\"\n7 ~\nity lag Sie\nae 1:\n: (Pw |\n0 lolwey — = 2 | 네\n| ; ls Az\n1007) fi 시 5 . .\n? 2 < ! ge 2? fH . a\n= & i\n7 ee es — 전\n7 4/000000/ BER BR rae\nhe! aa, 개\n= cis\n| = === .\nEa ps\n= wry. —\n때 i ~ = | ce nf\n",
+    "parsed": {
+      "Title": "— ——_ Rin",
+      "ItemNo": "000000",
+      "Price": 1007.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000010.jpg",
+    "meta": {
+      "variant": "gray",
+      "score": 222,
+      "nums": 40,
+      "words": 142
+    },
+    "text": "—\nee\n~,\n| - . P| 때\ni > '\n) <: | ‘\n| | ~\n~ I | 그: -\n| oes ux,\nLOSE |\n로 ~ —— es\n개 | PLux: =\n> 1 | P 것\n>\nx ¥ 0\nTTL IT) 1001 1001,\nBA Sg CEPI RS 08 1035. 160\n로 g f a. 4 ae af\n& é & z z os\n— a os - ~ 전\n2 Se 5 x x\nEPH ze 30 2 530\na & a & a & #3 #2 r @ =) as\nfh 6D Bh > 7. i gue\n2 | g #2 @ > #2 fe 2 '\nf F z z z z a\nOe ( — 소 - 1 10 -\nRa D\nol '\n~ es :\na -\n1\nd\n~ el\n",
+    "parsed": {
+      "Title": "| - . P| 때 i > '",
+      "ItemNo": "",
+      "Price": 1035.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000011.jpg",
+    "meta": {
+      "variant": "gray",
+      "score": 274,
+      "nums": 49,
+      "words": 176
+    },
+    "text": "ey\nee\n= “3\n_——\n22” ~\n<: ‥ | 7\ncoe | =\n? = 이 ~ 7 A 4\nap | ce | |\n. [\n/ - > Hmm\n| - q\nf | f PLixs =\n‘mum ㆍ 7 7\n가기 ~\n>\nRR D\n28 i: Peet ™\n시 와 * ) FQ ®\n00000 3001: 13\ni a Ps Bn) BS 2 >\nG rd g Fy 째주 표 일 ae a?\n5 te tr, 「 S & = a}\nee ~ OF ~\n어나\n> Se [7 FO FQ Ko Ko\nbee FT zs 1” 001\n을 @ = eS 그 5 5 es 10: ㆍ,\na a a @ 5 # > # > hy A 19 i an,\n¢ fF 10 ey oa? #2 |\"!\nths the 「 통 = i a\nee ae @ 스이 으 ^ ~. 땅\n자아\n[주 쿠키 ®\n160 1,998\n116 ~ ~ ,\ni é\nEL\nnp | emmy | … st —..\nke we \\ aus Lp\n£3 a\n",
+    "parsed": {
+      "Title": "_—— coe | =",
+      "ItemNo": "",
+      "Price": 3001.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000012.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 281,
+      "nums": 54,
+      "words": 173
+    },
+    "text": "a\n4 3.200} ofits\n~ 때 Ee,\n, 그해 〉 } —~\ni ane a 「 “age a\n==, | 070 > nae rts '\naha TA Sd EE 은. i\nRe] / 이 ie a -y ~ * =\nia Sa\nfox. Lory at\n~ 1,928 i —s ™\n—— | Poem\nUT BF FT 03 EE [ER\nef! 로 a 3, _,,\nIMG + 나 nee 00000 (Fs\nit = 기 0 = = 명 © 을 FA ch\nat au ME Hina ce — ~ -\n> aa yeah Di fmm Dit ‘fo =e\nLEV ia 10000 lees\n나 월 져 나 Be\", & a? é { 고자\n시 너라 리 704 명 sae | HE 140,\n1@ 애인 an & a 더 더 el n\n= fess i} ——— ace SRS\naa Sof 500\nStee a sal 1.998\n2,380 7 내사 ~ 개 pee —\n= 가 Sty ):\n. — “seals moka ge,\n= 1 주 SSS] “SNS\n— 0003 000 0 “t 기아\n[oR LEE LEE a\n",
+    "parsed": {
+      "Title": "~ 때 Ee, , 그해 〉 } —~",
+      "ItemNo": "",
+      "Price": 10000.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000013.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 291,
+      "nums": 54,
+      "words": 183
+    },
+    "text": "feo\n2 SS\n3.395 . 1 \" = ㆍ | ae\nmy 109 1 가액\n~ ~ = val\ni 새 여래 . ~ a\na oN * ~ <> “4\nSek Bee SS 7;\n|S ERS =n |\n~ \\ EL ae “rs ~” 시 /\nFEES Tie fl t\na = Uf\n1,998 / Se ae | PE\n~ — 2,998 ma\nae 은 나 ‘= > ce ef te 4, vy\nAi] Hp icra '\n00) 0, 나토 A te 8\nte Spe fod 도 is ah 구도\nSas ae trp\ni TEeileee ae inet’ aT ; ’ :\nHE LB\n4 i sh] lf esilfee a 2 62 겨 “py\nPSE ge LEE eR ge) paps\nPS pe ~ 가리 ed TYEE Be ibs\n——_ —~ : os aaa\naay [들 2 ~\n내 ootte. ie\n=| pal 1,998 one\n어가 Vy i\na TR et e5 ot | 1 다 아 어\nee 0007\nSaeed 영시 | ~ woe\nApes te a’ LH fog . Trp ne\nim 50000 ; 은 r 000\netic\n12282 / {2 dl\n",
+    "parsed": {
+      "Title": "feo ~ ~ = val",
+      "ItemNo": "",
+      "Price": 50000.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000014.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 262,
+      "nums": 51,
+      "words": 160
+    },
+    "text": "7S SSE pe]\nmend . 0, 스고 ps re é\nSS Rene | A 7\n」 at 들. == trl.\n~ 1,098 MH ~\n~ 으으 -. a nas\nare — pr\nah io deck.\na pas ice I~ 0040\n0 at Pe — i f Ny 주\n00000 나소 Pra\nJ] ey tr] Ssh\n“> (Raa [os set\n가 | oo\na 1 7] 2908 A\nOS oily xen o Ds, Aa +, vf Vv:\n0000000000040000 rp\n나아 구오 은 iy SELLE As Sarees:\nEa AS) SS\nree nde 76529 HI BY (7 WEEE ;\n‘aan g.nez fy fe ae a ie 가니 ee\nPe Pei fe rh ME: wap’ ify PEG\nSS SS it SEs\n[eS > =\n- [= ~ reo) ‘3 Ls |\n시 ) ~\neee 7 ? Sala alg ~\nLae} (om, 고기 Lae 7 ae te ~ !\n고 Pr Use| SPs ay 2 Ne\nETA aid ee + 00 Pt be pe\n",
+    "parsed": {
+      "Title": "」 at 들. == trl. ~ 으으 -. a nas",
+      "ItemNo": "",
+      "Price": 76529.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000015.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 326,
+      "nums": 78,
+      "words": 170
+    },
+    "text": "ee La\n/ TSS tr]\nee . ; “ — + 0\na. “. a\n= SSS = = ry\n| on | ay 1\n, 2 sacs fp?\n~ a ES 400\n7 가자\nUK; eS TT Ne? Si\n08210 prt’:\ntee, [fae = aT\n7s | a alae jae 171 는 _\n(eae | 30 Sos mage te YE\n5 SSE PER. ere ee HY =\neh 20000 Zz, ; 17 들\n에 (Bea Fo fas iia\n9 | Beer ee 0\n2728 _ SSS 2,998 we:\nMTEL EE rf =\n' 기 oll ‘ .\n후 i i co wai} Aten 뻔\nPn ee el Exes\n100 850) 88 스노 la SE ect\noa Tad Sd ene ite Ree 66\nSee ‘ an Rnd,\n428670 7 ~\n— 0:\n~ 1,99 See\n~ ere terr ! 버그\nlak eel dae | NA\n| = —— elves Aaa se yen\ndf S87 Seda ce, ： 주 senses\n222300907025 VY pee\n- ake 0 a\n2079.00\nfoe: € 선전\n",
+    "parsed": {
+      "Title": "ee La / TSS tr]",
+      "ItemNo": "428670",
+      "Price": 222300907025.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000016.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 297,
+      "nums": 39,
+      "words": 219
+    },
+    "text": "7 ™\nett! en 시 te\nFi ar tno ~~ trl\n— | ~ a] pth\ni 1,095 SA re!\n기 848 rok\nke — 기자\n[는 20 7 ip ee! =\nJoe cs MC potas,\neae ifs sree\nwee: 2 ? ~. ~ I I i |\"\nae ~ = oe ° ™ i\ni 7) r= } oy ee 1/ =e\nSEES Se eee sl 7 i\nhrf\naf %\n(Reais we (oS\n. Ss elite. are\nSSS |S sos 두\n나 아가사 pe 우오\n11000 0080002 fie\n] D: = 여자 eno\ni reg indi Man ol 01 ta\nwd : th pte “hy; | i\nSis > = Ur eo cate i\nlp = GEM ry SEER\n가 as SGT EE oF ‘eR PS\nC a? 그 호조 가  - rr OS ES\n-_-y 토다 | 다즈 ; U2 re\nent es INS =\nie ec 2\nane | se 1:\n본 1.998 rey ieee —\n: SFr af TJ) Ye = ~\nleet errr i Ts\nSE. opt pescado\n~ ~ 생 , 개 EARL, fs] va I 0 이 fed 대인 0\na ie pe eciten ie rif\n\"기 5 ‘ 스스 ae, oe } 호 인 연시\ngif Fr : j PB rca meg [ tee\ntH LSB F ESP oe\nWea\n",
+    "parsed": {
+      "Title": "ett! en 시 te Fi ar tno ~~ trl",
+      "ItemNo": "0080002",
+      "Price": 80002.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000017.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 287,
+      "nums": 48,
+      "words": 191
+    },
+    "text": "_ ~\n2098] fe ] 77 i\n~ Se] Pa { 오\na Vv > ‘ i\n=i ~] I :\n2 oS \"Tip . —\n3g\" RU j 시 는\nSS — ; 1 77 “way\n— ed a 7;\non oat oa ar 4 =.\n7. 호오 oo ae , Faas ter wt\n<7 ete SEL 1/ 나 597 ,\nene Se 1 tr) Sie\naaa 오수 0 . it , ocak)\natime?! ES\n= nat, 기우 ay we \"> ==\nPEE py ES,\nfey a : os Oe\nme is EE re pe tree]. vr Na 07, 7\nSPELT Fei i\nET a, ~ SE 도 TS\n2; = = =~ rt RE ty yt =\n하주 내리라) reg ee pacen\n디시 NE RED No —\nJSS ae if 아가 SS 25 rere\n1,998] 00 나\nHE 27 o SS\".\ngel] 6 으 빼 .\n0097: 나 ea 2 SS\n[SEEPS L YP Epson igs taka\nPal fh, enn, ㅣ 오 te bod 가스 PvE is Pr Py\nSeah caf ae) UU 0000\nRil; Ga: 7 09, 스가 만 두는\nEES seth,\nStl SE OE Fo | 들어\n",
+    "parsed": {
+      "Title": "_ ~ ~ Se] Pa { 오",
+      "ItemNo": "",
+      "Price": 2098.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000018.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 157,
+      "nums": 17,
+      "words": 123
+    },
+    "text": "poe Set eg Pe ee\nSS HSS 니\nSSS 사노\nCeres | Ftp an = ~~\n\"J - | Vs 는 vate ~\na 10000 -\n아는 a 이인\n= 스 ~ ana, (~\nrey rap  ( 으 귀\nyet Ppl: “= a tae eee\nacl Rally Beer ww im ae a ^ 베\n비기 HS SST SS\n. aoe er te\n2.008f PE = er i\nGPF Sal 도\n— ry = 자 매가 TS ~\nless; 것 cl : ~ wie. 그 』 ‘ '\nal castes area\n브이 TES ie\ni Br S7Ce\n02; a | ~\n1 Wo 00\n/ ze Pu i, eee\nOES ei see)\nHt iialaehee Ny =\n[11 ent Noe\n개신 posse: se GES a)\n",
+    "parsed": {
+      "Title": "poe Set eg Pe ee SS HSS 니",
+      "ItemNo": "",
+      "Price": 10000.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000019.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 294,
+      "nums": 50,
+      "words": 194
+    },
+    "text": "SS. EOP Patt fs Sg F%- 7\nre ee) pf Hse oe 28 6a\nJ et 서 00000 eg:\nfa Se\n~ ty (pS eae\noo PAYS; ae\na | vt —— ㅎ ㆍ 소스:\noe SARS Pd i ` ~ a 내 A\n2 00 10 의 이 <\n~ J [> wo LY a —=\nRats 그\n7 By a [i ae\n| LA] ee ar i |\none oy. | ! } 0567) ~ 2 그\nSse At) sf PS 292\nhor aa =v a ell eel ” ~~\n| ESS RSS\n. 글 내 Tet “ me .\n20) se or 고두 도\ner 4] Oi fz\n1088 i? 7) eines , _ te\na uke. ryt. st af 2 그 자 래\n그 ft Ref 시 때 SS. .\nge ht beds woo pin fee ere\n도라 =a\nYT 7848 — EE\naf ess SERRE 나\n“FE = —= = SE\n33 oe oe Fe ene =\nWye fat af\nfirs fk 010 ‘aati 7\n7 0207.40 0 아\nFad Les icic apy\nSH fpr sete teisiakeeg ONS,\nyop ARAM RA Ried bi aicar eate . Non 이 이커\n",
+    "parsed": {
+      "Title": "fa Se ~ ty (pS eae",
+      "ItemNo": "",
+      "Price": 7848.0,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000020.jpg",
+    "meta": {
+      "variant": "gray",
+      "score": 196,
+      "nums": 32,
+      "words": 132
+    },
+    "text": "= 4 Th\n~ ly .\nly —~\nyt —\n~ ve = ‘ .\n‘a 우겨 =\n다 ~\n! ; =\n= !\n: ry “>\n) . ~\ni ae , :\n2 r Perro .\nS yr — Rowe Fa:\n*~* ~ ^\nPc 798\n- j\n+} 14) 03” 000\n; 7 : >_> =\nSe aire = : =\nI if 737. = “ ~ — =\n! If : Le {i ~ > % ~ 7 :\n, 7 ~ ㆍ ',\na 이 아가 ——\nvr, 1,698\n2 인 , )… Z| — i\n1 oe ee th ff A ‘ i, ;\niii Ca 500\n' i . ~ 13 73 . os o\n1 , i ag ih (시 ii WKY PUK:\n",
+    "parsed": {
+      "Title": "~ ly . ly —~",
+      "ItemNo": "",
+      "Price": 1698.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000021.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 172,
+      "nums": 14,
+      "words": 144
+    },
+    "text": "~. ㆍ wd) ~ ~ on, > + W\n~ a 이 널 개 시 NN, Se :\nMPS TSN\nSs: | ~ . “wh\nited Pee\n= Ls)\nmene, oa *~ ND,\na a | SS!\nPa ie es ee ne Pras.\nWE LESS) sp TNS\n~ 오오 나즈 ees 노오 raven\nWe LErs te 0\nSSS HR Eat - >\nnd eee ^ - ^. ~.\n— a tr - +\nSo, = el = —_ 7\n; ee > aS ern\n«Rhee ee Seer — ~.\nese =a //\n= fo —~— = ,\nSt 1 도 ~\n거저 소트 oN ^\nSS” — /\n3. ’ ‘, ; </\nem - 1 ~~ !\n[pee IK.  :\nam) \\ RS 0269 —_ va\nPoets 5 \\ Bat at :\n120 1 은 Sr ~~ . a\naes \\ t= \"<.\n",
+    "parsed": {
+      "Title": "~. ㆍ wd) ~ ~ on, > + W ~ a 이 널 개 시 NN, Se :",
+      "ItemNo": "",
+      "Price": 269.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000022.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 145,
+      "nums": 16,
+      "words": 113
+    },
+    "text": ". a een i. SS\nSS Ke et PS ie\n~ SS: | FINNS.\nmy moh = > WN oN; -\nKS <.\nASS 로 ‘ ~“ ! 니다 ： XA. _\nSELES. | DSR TSS\nSe 에 SS\nDER 2\nYAY Ses\nRS TERY \\ wags ee\nONES PE RSS.\nSANT OBS\n\\ a | 아느) ~\n0 a 나포 11 ~ 로\nfe 20000) /\n고 , | 0. | ares Ltr. td i\ngy | 7\n— 그 on 이\n= ~ : ~ ‘ 10 =\naa \\ eae! TE\na 00 “=\n~~ ao ne al\n에, - , * at - ^ Ae,\n~ 7 eo 고나\n",
+    "parsed": {
+      "Title": ". a een i. SS SS Ke et PS ie",
+      "ItemNo": "",
+      "Price": 20000.0,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000023.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 269,
+      "nums": 29,
+      "words": 211
+    },
+    "text": "= ~ f\naV ME\note pa. EN\nSt Ses SQ\nPast > RN \\;\nies SSS 5 아느\n, we ㆍ ~ ‘ ~\n7 . ~ laf :\nㆍ, “\n로 ~ Oy\nV2 Pe ort 43 ca . ~\n< rae 오아 / 초니 1 ~\n개 naw 수소 a ee\n.o ~~ Be ~ Pe\nAbate Teta o ~ 5 / Nn\nRowre “ ; Ta [Sh +, SS =\nSE | 660 Ss\n. 6) 내 teens [ ES\n~ ： = [ ㆍ 노오 —\n+4998 =a Sty ? 0 | >\neee Ler SE +e ~ .\n> ween SE it: Jd: 1 _ fee 때\n가 i ~ ~ / ;\nzy ‘Qivsiw ce a i. “sy = Ribas ~\nf bomen nt / 수 fs oe f: A\n이 튼 네 닌 이 7 ee tf = 7\npera as S TT gl ad = pay fs Ye. 4\nRomo m | ” 그\nom ) Pr\nFs) ers \"\n_ CE ay\nPG - 22 - Dee Te * gels\n< pack. — nl ^ ey\nare Lx - a e- epic\n+ 의 at tov. 2\n수 수 모 6 ^\nFie ‘an FA 00\n421; (ebb h =\nfs\n",
+    "parsed": {
+      "Title": "= ~ f aV ME",
+      "ItemNo": "",
+      "Price": 4998.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000024.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 231,
+      "nums": 34,
+      "words": 163
+    },
+    "text": "_—. 내 때 Sa A ofr\n\" , SS SSS 0\nSSK EN ef ERY\n; . oT\na oS\n~ aot ~ ~ ty\nme 이 SS '\nee . ~ 기오 때 Sie\n~~ 4 “>: ~~ , ~ 이 inf oN\nne IES Oe\noe “= 소 RIT fi is: if\n> 고비 오 으으 II “asl 1000\n7 /SS5 So Ty fy\n지 느는 구드 ee “oe ee tr >\nJz “FESS: | TST HS\nMee = re pane\nPS. xf ESSE tr aSy\nA ae ~~ hse - | IPS\nRees eee pel BE PSH |\ney 1 . > I Y wo\nwey ad 그 4 0000 느 고\n오오오 Neel [Mel [iia §\n“Spe de ate, 01030\n006 Lee 가 느 스 으 새 sel 3\nspt gp 0 220 6\n{ '- 녕 더 00\nTk iy a\nNe eee ~ eet =\n) ee AP ee et Bs\n=I PER TS\n^] 그 0065\n",
+    "parsed": {
+      "Title": "_—. 내 때 Sa A ofr SSK EN ef ERY",
+      "ItemNo": "",
+      "Price": 1030.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000025.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 241,
+      "nums": 40,
+      "words": 161
+    },
+    "text": "6\n“~N trl.\n- ee my SSK 17\nPress > iS 4\nast = ty\n298] >.> fe\n— : 때 . 4 ~< fee:\nma 내 시 / a\nare ~ -~ SI. } 락\nSl. ; ~ “ys i\nzl i 2 SP te it =\nER, PR |\n0 = * ies ~ 구 07?~ ;\nst Tee fre at Pants _F\neee atl ee 가 Sew? Itrk ~\n~ ~ ~ 가 “ws rma ee\nPe eas ee SSSSSRES 1] 등\n| ee ee rf ES\nBoke =~ ia re\n0 1,589 ies 97% 7a _\n- \"pe re en Ae ay iw\nJF 이 (EEL 1 ir ES\n: ie th pay \"조주\nSL Sai , i — /\nPN [Teall [1 Ey\nSE NL (9. 551.\n주계 4 나\nSohn 3, 77\n2s 1,799 aes\noid Sere a ol i “oe\n^ Sey 2706 Se\nOT 가 (나우 안으로 애 ,\n이 가, HS at\n",
+    "parsed": {
+      "Title": "“~N trl. ast = ty",
+      "ItemNo": "",
+      "Price": 2706.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000026.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 235,
+      "nums": 27,
+      "words": 181
+    },
+    "text": "7 = oy i\n어어 : SSS ee\nSY oS 이 ty 4\ntt 5\n_— . . a ~ [7% ~— -\n1.689 . Bt: 고 ~\naf Sigg. . ~ eR, 주.\n구 ae [22a at “\nSy SSIES yf —\n~ a, = ae coke tone,\nJES SSS Rey enacted\n— swan ip PLD Newry atte s— 8\npS SNS t 1 Se Sans ds\nao set Vers\nSoret chon Px\n, . cm 980 -\n- va : : oe ; SY\nTT [; rose] 2% =\nLoi | aC ret) a a ren\nood = ltrs sie}\n‘ia iy tee fey icaew 7 내\neo IE LP pmesy [Baye\n+} 】 OR IS Of NET. [-= wu\n서스 Re 기 Se fr ; 0; pete\n4 His (a nil 200 j eat sed A =\n—— ns 0b 1 오 은 Pez\npo FE =\n720 af arty\n’ — 겨레 가 we\n“Latte PT 기 스즈 우\n소서 시 수 운 구운 ls le\nOy fet Tar boeily\na Ny —\n——_— | Fa NES:\n",
+    "parsed": {
+      "Title": "어어 : SSS ee af Sigg. . ~ eR, 주.",
+      "ItemNo": "",
+      "Price": 980.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000027.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 373,
+      "nums": 53,
+      "words": 267
+    },
+    "text": "rs , ee. if reef fey\nTete FP SSS\naren i - < ' t i an\n~. wets a 을, wow Be “.\nJS [me 개 ~ is Sy :\n> aes | |e Pore. -\nod eS … / {'\n7 By aot sees a 7\nSS fs oh oF\nse ithe fled -So ores 시\n . ~ . ~ <= 가. ~ 다 내 :* ! f\nf Nels 나아 = te ~\n/ 보가 아구\n, me My jn, 기 - cae f fax : ve. ~,\nsf Se esos) aS\n~ =e <= 2/..™ a) 7 iets\n— won tng [c.g af pS Saas\nSea ey H f Nee ane\nrien ay pp 0209\n라리 BL ae eee\nee 72 제 1 으으.\n~ ae poe a, al 4\n= - - ga. Q. 9 . [ / i\" 980\n스쿠 Jou Spere sof iN at 아는\n7: . 70527 Ps ahyZ, { ~. ( 슨 그 02\n제패 pe ie wf ! rd Y =\nNE Co [PU tam ' 극 은\n. ^ ~? i 12207 { f : aS\ni ah; . soy 2!\n-】 9. - .! ' =\n7 . of. oe , tf , ~ 340\n번스 Vd a] al 호 0 ; [- _— Try 개\n217 [그 트 3 트 00 02 「 ; | 아디 3\n— Us. SEF LF\n~~ ~ i x Jeet\n1,799 이조: aa\n[Kien <3 | O_o\n: fey ar hoo NN\nSEE SO 나오 IETS 년\n4) (a epede ELE Ty\ni\\| +s 76 hk? Cm NS\n",
+    "parsed": {
+      "Title": "rs , ee. if reef fey Tete FP SSS",
+      "ItemNo": "",
+      "Price": 70527.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000028.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 193,
+      "nums": 26,
+      "words": 141
+    },
+    "text": "| Sets. SSPE 스\nfi. JERSE ac! SS:\n3/45 3 3 ee 8\n\n~ FIGS ~ = S85\n\noy Ke Pe >\n~ 3 , ~ ) ~”\ngee} RS\nSS tr ~)\n가 아버 Weer ae —™ =\n~ 7 eae ee 이오 이 아우\nee, r Se fiat :\n| 2 eee Se,\n0 고 [= / Sd\n그 25) 이 E\n-]) Seine SSE eee SF\n-』' ly ~ 우주 ~ 나 그때\nify” wo! mee) 오소 ~\n\nUt a] 가디 fs\n| (그 곤 즈 우 [ 니\nf awe) BES Es\n\nPh Ces] SES (Ges\nJO Se | 2622 =\" BES\ni. rr ee 2\n0000 O° pss} fa |\n00 Po 진스 시시 구기 도도\n아구 수 See /\n7 REET oe Ears\nTf eS =r\n우가 그 `\n| epee ES ase sz] TAN\n",
+    "parsed": {
+      "Title": "| Sets. SSPE 스 fi. JERSE ac! SS:",
+      "ItemNo": "",
+      "Price": 2622.0,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000029.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 381,
+      "nums": 58,
+      "words": 265
+    },
+    "text": "s* ee Oe Wee ek oe “a ON. : an\n시 RLY 나 ~” ER fe oe\nns Re aan be\n= SSE\noN ~ 그 사돈 so\n1 ~” . ~\n! bs . ~ ~ ~~ 나\n때 더 —~ ~ ™ 4 is\na) H z a8\nes ~ >~ . ~ ` Hs\neh wD Oe ee |S\nry ieee to ) 7 a\nSeyvz ak City ae . —*\nPSE Pee . SIT Lh i\nVazes ed | Sd | | AE 개 제\nSe lA 사두 | [다\n세수 달서) tr\nTen =\n90 ee, ed 이\na tee] 6\n~ eae a ==\neo “pelt 「 어이\nSasso 누스 2.695 ~\nBn pea 그 be mpi!\nWSS ey OF 그 1 , 길기 아 -\nST ey oe | Te\n4 Perm) Ore] (Ree Ae, |\n1 [FSSA 7( ㅋ 2620. | [ET | se; ‘hfe\n| 은 ~ Pees mo ‘gy\n7 goa cn |ez5f we ~\nQe NCCE | 세린 들 (\n602... —— car tone 2\n— : RD aetna\neee BEL OEREP EDD ： ~ 7 =\n0000 Bead. 00207? | ~\n0296 | =, | apie\n__ 1,398 A 이가 er 1398 fe ~\n사사 71, 이 “2\nBe 시 이 이적 즈 : Wyre TIS ve\n0 Or ete (0 =: wf\nte 0 오이 사이 시노 were (\nain carl 1 BTA ORS AGE SAD Bid SE a a '\\\na = , . i . eS\n00 Ce ‘ aa aN. 수\ndN ee ES\nSores BAA Ae 01 ~\n",
+    "parsed": {
+      "Title": "s* ee Oe Wee ek oe “a ON. : an 시 RLY 나 ~” ER fe oe",
+      "ItemNo": "",
+      "Price": 2620.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000030.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 342,
+      "nums": 67,
+      "words": 208
+    },
+    "text": "- TNA ,\n~] a 나 “3 Ss SSN - io\nee SNe\nNia SS a LP\nOSES\n. ㆍ . ~~ ~ 2 0\n> = 에 내 2 cd\nole oS eg a\"\n> 1845 |; 에노 = ： 고\n. ： |]\naL 우스 Tose\nwa 《 fe 오이시 에 \" a\nRee mi aes TL f ss,\n:, 호나 : 2 Nie cel os / & ears '\n- vis 7 Pes 1 \" is\n770 fasts oss\neee | Fo\na aps ' Oren, ~\nSate, =~\n280 2498 BES 이프\n~ —, 69% -\noo : ~ “ 2\n~ SS |S = aa Tren 그나저나)\n~ a 기, PQQ ; ~ \"할\neee! | ae\n= SSS oes Per sae, le ph\n~ 은 ONY 22632 애즈 | So} a\n4 [auntie sell fae! fé x\n~ mies pS — 1; 111\n| seat | Conan 3B60aca dees pt\n=) 528 AS LE\nar 40 0\nan Seas | 00\n200 0400 | 130s 이 ~\n1.398) | = pe ae tt 어 Se\nSe 스스 : 16 S\n~ : , 수 221 ~\n쓰러 A Pra rs ee oe ae 제 Sa\n700 See rn BIT\ntee HN ~,\n",
+    "parsed": {
+      "Title": "- TNA , ee SNe",
+      "ItemNo": "",
+      "Price": 22632.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000031.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 239,
+      "nums": 35,
+      "words": 169
+    },
+    "text": "~ ~ 삭\n0\n\n5 a —— : te SSS\n\n~~ ： ot , ~\nSS 26 ; |: `* [\ni ~ ~ 00 1,\nSo. | Bae oes\nPoly x By ~ ae at ~ !\nald 5k asses,\n= med a! f= wy Bye =\noS hay ~ al ack\ned -7 a 은 , —\n\nite a Stent | SS\n\nce. : Oran, ~\n\nsa re 호\nSe FET 안\noa =< ar\nSSS ~ sae\nC20 G30 wren yf 나 바시\n—— 가버 아이 이 우열!\n——s a . = =\n=ONAWS Sean — ‘Shans oa\nBV ses ees a) Mul.\n사수 25S 은\n= Se VeEEsss! yg {.\nLS 구 6 = = Samara ZA ED 내\n시 / 2,\n\nㅇ …. ㄷ 622062006 ’ ere\n©. en 으 고 2007 ~\n\n~ CeOaTen 이\n매번 0 [ ol ~\nI 7- : Creme.\n=E=} 5 nai iy\n—* 어드 = 1 . 2\nSA SS ST af ager\n이 a Jere\n시가\n",
+    "parsed": {
+      "Title": "~ ~ 삭 ~~ ： ot , ~",
+      "ItemNo": "",
+      "Price": 622062006.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000032.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 200,
+      "nums": 27,
+      "words": 146
+    },
+    "text": "en a 1\n\n~ ` 이 SEY >\n| a ——~ oe 2\n이은 바스 \"녹기 Meg\na —~. QL | Ae\na , ~ 4 4\n~” : |: ets | 때 구우 시스\n~ ~ tong oo ,\n나 ee Bal\n\n\" 0 : 27 그 ~ To\nieee Sl y i Pais [\npr S| ol 다아 게\n4 BY 소다 | ewe! = Pa} t Sea\nPNA ny 1 Oxzany ~ 229 cS\n\nenna tae ~. 주르\nFE og | 2598\n\n오도 feet Sided. -\nBoE . viet fel ed,\n20 eae) 4 ee lb Ver\n2 fo Ga CUE Clee ef sf 1s.\nee eed sary! | fe 느티\n그 Seana lela] C[P\n-_ | Se\n126 eee\n997} Sit _—\ni : | eT Ye\n~ toad 니케 a Né\nPic aaret aae ar ganye: Wo peer\nSewn. ane S\n",
+    "parsed": {
+      "Title": "~ ` 이 SEY > 이은 바스 \"녹기 Meg",
+      "ItemNo": "",
+      "Price": 2598.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000033.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 300,
+      "nums": 47,
+      "words": 206
+    },
+    "text": "re ~ “= os\n{Tp > Se SS \\ LY\n~ ee ~ os SSN Cab ~,\nery ~ ~\n= . es ae\n2a ~ } A\nLa ee . =~ ~ =~\nary) : [= . 도 ~ ;{\n~ _ > oon , 구겨 2%\n— iol yee .\n| TI ee 1348\n1s si 00 ~\n(23079 0. /, ~ P< fl.\nare pare Sa f. Lae ite or [\n사노 FT coos os - 6\n[ 롱 : 기사 기 Sele RS ie fit\n다 000 = 4 0 스 PLS fle /\non SS he a ef t=\nOran  —~ =\neT rl |\nSoe [91\n14009 고 oda. 더\n= ghey it 기 Cite Le\n12629 Js ~ Ssh sh\n= eee ee “ra Ey\nmene PES REY ea] Pel elf, OB\nCE BAER 때 Of rn\n~ = ys 4 WV Sebsce\nHf CS os, Ret ed ely} 이래\n+ SSeeeeo ko Nel\nec —————\nEy\na \"2 \"1308p Sof\nTNT Vr | 시라 BINNS\n( * pas — a) YS 6\n어이 시 ipe we ag ase ~ —\nSethe 60 cee 0 204 쓰 er ae\ned Zz we eer ly 7\n~, 니시. 아사] 는\n",
+    "parsed": {
+      "Title": "re ~ “= os {Tp > Se SS \\ LY",
+      "ItemNo": "",
+      "Price": 23079.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000034.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 188,
+      "nums": 29,
+      "words": 130
+    },
+    "text": "“loos. 이 2” ~ 8\n~ 、 그 시 8 “if SSS\n: we 은. 이 ee #8\n20212 co ~\n: 때 세\n나 yr 내에 ne\noe } ie ~ ‘L ~~\nSree | TR 수 Se\nSSS. ie > are —\nseve! B/E ||\n~ 고 ~ 제 \"~ 4 / = |\n} > ! 238. ES [\n698 Jz: 2 [SST\nssi <—=1\\h\nee , , 고 2835 St\nPelle PPR\nal ia, 제\nea) 기 디나 ~\n{AES 시 we 다 i y rE 고 -\n「 는 를. (Pr ————\nsee! 개 aie 1000 para\nBee NS eh Gf er [Bee Be LEP\nSS MANE FE) CEE\n56 | —_—— [Ps |\n= [Sane S NS\n\\} & J = Ry 우 0\n",
+    "parsed": {
+      "Title": ": 때 세 나 yr 내에 ne",
+      "ItemNo": "",
+      "Price": 20212.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000035.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 246,
+      "nums": 37,
+      "words": 172
+    },
+    "text": "a a - | ~ 0 1』《\n~ ™, 134s / ~ 개 NS\nf ^ OTS a\n/ 47 My ㆍ Saf >\n시 + 1\nWD — ae\n| Eat Ea / ~\nBey / ) BRASS fay 22\n(os ] ) Gea oi)\n4 ~ aS 해 rat ' ：\n0) Soren\nBins == \"애사 aoe Pe\nPE SINE\nly 대서 고르\n기 (드시 ree 누는\nBY SES | 2888\n103 “iS 가 LL 때 .\nfel 가연 : Loe ce,\nke Nef ia] 고이 i: ! Fm Pan\nEEL [i eps) (Ss.\n나이 기 기니 [EE\n64 ed] CEE] CSE | ze lee en) Piva eed 2\nEd ANG Fated es at oe eae\n~ - 츠 i) ㆍ ~ 세 &\n———_—\n1692 eS zal\nAr Wj Oh [SS o)\n에 : 시 376000 x\nop. aoe (62) pain cm ~\n~ 1 fA = 자\n\\ SSS 그노 AE\niss enor isi 7 Ves au\nOe // aneenel a .\nWeyl ee 0 디 로 나\n",
+    "parsed": {
+      "Title": "f ^ OTS a WD — ae",
+      "ItemNo": "376000",
+      "Price": 376000.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000036.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 324,
+      "nums": 49,
+      "words": 226
+    },
+    "text": "SS an / eo~ 1 . AR as\nane Afar wo} ~ tye!\n1 . re as ees 개 ww\n이 whe, tia | we\n~ eS me wot\ni +) fh. 1 ~\nrh . ㆍ “~ 948 =\nmh 7 ： > - 빼 ae\na BSA | ~ a 1\nTas | aa ih 주\nSy aa + 박시연 ot //』 .\n‘ 제 소스 개 ia} g |\nwi ry Dyess a\n™_™ A295\" eo 녹 어나\nas PS is 글\n| Sed 는 1\n2,548 ——— 는 6\nSebel fi) —\n001 [ 겹 . ~ ~\nSd 00 29\nRang ors os L 998\nShel Bee) 1 ~ 그\nFAS] ie ae RTS ~ os!\n시 7 러 _ emp Pir oe: ae\nㆍ 하스 awe POS ren omen, Ne, a ㆍ\n“j= 4 jan fp chy i 조 느\n고 , | 에 rn, 1 ot jae ~\nOi lini plas ~ eee —S\n이 KS 5p mo: Zt remy es 327 를 이 )\n이 Xe | 2eclasta re, im 대\nme] NEE WEEE Be),\n오아 이 to ~ 대 BSB ent 5\n[= | Ra\n2 나오시 ~\nTa] ef rans Se\nyi (2 03 — —\n} ta Va \\\\ - vac IIb > aes\n(=\n(aa a ae\n가바 22 1) 00003 나 | hy\n",
+    "parsed": {
+      "Title": "ane Afar wo} ~ tye! 이 whe, tia | we",
+      "ItemNo": "",
+      "Price": 2548.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000037.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 339,
+      "nums": 53,
+      "words": 233
+    },
+    "text": ": - SSPE EE\n=e 가 =: ‘“s ee Fe\n= SI; wo TA tS f~i1\nSs Nia | eae ~6\nSU 6S 이드 도\nopel A / She . ~\neen Se 0. . ㆍ. —\nPe 1 a .\n1349 Jes = =\noT 1,948 나\n- + ; _—\n후 。 | 7 ye. - 12280\n:、 ae (Ba | 2 1 oy — -\n보아온 ee | | as\nPre ry Stk y=\n0” t Ss az vi —_\n기 SEES cars| Jl ~~\n= SE NEEL,\neee . Te\n별 세\n2.548 fa |\nra -  2.998\nlod 12 j ve} =\nES Sif is ~\nSHAS pe. ] 트 , ee 이그\nFAA sf 220 Sp ~. om 죽으 오 ee\nFa i rs 2. mae | ee 노가 `\n기 As 27 고즈 개 7 12~ yeu 바우어 ee 운\nka Sie . 으으 국조 i 125 Biers |\nSeed AMM | Raat Se afc jabs BO\n[점 등 ide Z ~, é fe Py\n=e Ff X Eee. ~ Foss pant pe\n062 4 > 려 bal ' eS Ba vier’ Aw\n=\noe ~ ㅣ\n. ay ne 고즈 이 re ~\n/ HY PEE aS ——— ae .—\n… 기 나 rewee 0) fn) 사아 Cy °\n[ ry fimmont | NY pag] POOR 07 :\nㅠㅜ va (3) ey 0 개\nt.\n",
+    "parsed": {
+      "Title": ": - SSPE EE =e 가 =: ‘“s ee Fe",
+      "ItemNo": "",
+      "Price": 12280.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000038.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 278,
+      "nums": 33,
+      "words": 212
+    },
+    "text": "~ a No \" é oR 이\nt 지극 그 나 개어 ~~- < [0 가\nLobe SSE FARES\n00001 CAS 1 노노 Se ; 져\n~, ba > rw AE\n. 나 내 ~ 가\n| fesse. OS =,\n시 우이 시은\ney SS\nseule. 2020 0 고이 0\nSS, | oo , >see ~\nSA ; - ~ . ~\n= A 그 그\nia) hr ad\nSS fi! 느슨 =\n= idan, :\n= | SASSI [A >\n; = Pf = To> 저류\n— oll et | eo\n“ = — i\n2 ~ tes,\n—_ | =\n7 ~ - : ~ 복\n—_ 0 _ -~ 0\nne = ~ eee. — _\nes\n> prs 7 OF E23. =. 7\nPF 3} 2. | [FE gorge “ER “By\need 그, - 2 3-8 —x 로\n~ Tas res =, A Sapte te =\nSe FSS Iss es ( fee Ba Be pe 부지\nGF Eee aes — nea 5 EES?\nee fF SED f ADEE\nrE er E PCY\n22222 — cee\n| - | |\n—as— ㅣ =\n_—— See\nAmrit —*->-—_ Neate\n{== TT 드가 = \\ ie\nS-— 들 1 TT SE =\n~ 이 그이 <\n= = t PaeEar—- 도\n",
+    "parsed": {
+      "Title": "~ a No \" é oR 이 Lobe SSE FARES",
+      "ItemNo": "",
+      "Price": 22222.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000039.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 279,
+      "nums": 42,
+      "words": 195
+    },
+    "text": "— 이 느 패 고 이 나 등\n나 Ry net Ge a WG a\n~ SS mite. ^\n~ ~ . —~ 2 J= anal ~\n| 0 니니 ae | 5 a |\n』 a7 fa 전 “ ‘al\n= 20 a —_\na /… 이이. asf\ni ~ . “1 ' ~ ~\n노고 \" ~ i ~~ — ~—,\na= ~ LAD, oO\nSams i [pe -\n0 FP ee p ‘\n고개 노고 ~ ie LEP yp i = re \\\n—- Ne es 06 (~ 고 ron\nra : roars e\nAe Ree ae > wr Pi ~\n내 Jagteal |.\nes 시이 tems,~” | Es\n2998 = ts\n. oo :\n. SS 아버 으아 그은 :\nf [223 pee\"re Ftp. = 2 ’\n7 See Sos = By a rh,\n\n고 2 너가 — Been ‘ a XY\n$3 238 8 UE 2 너그\n[Rat Bite a toa | Time Ao\n\nD2 pe Piste eee Sar = 10,\nNESS 고서 Spe mse ! iad\nSE ETE SS\noS = 3%\n\n1,298 Steen,\n| ~ mo - ~ 4380\nfst ape) WEN\n\n2270 Voor NN.\n~ PE WO\n",
+    "parsed": {
+      "Title": "— 이 느 패 고 이 나 등 나 Ry net Ge a WG a",
+      "ItemNo": "",
+      "Price": 4380.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000040.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 270,
+      "nums": 49,
+      "words": 172
+    },
+    "text": "Ose QO ~ 조르주 ee\n2 a ~ =\neS ae Ae\nea ‘ ~“ y~ ~\nvs ™ ~ ~) _\n1,948 | ve ~ oF\n28 . 개 .\nZz pom 가 enn r\n<a Qf AN, 1.260 [es\n~ an aba\n— . 떠 아네 ： - 1, |\nle Se\nro] LA 2 2\n4 <n} 나 LONG\n- a = ! me\n=” Nnster ~ 그 ㆍ\n= Rea ~ : Lf ’\ncad io eee:\noe td trons: ro!\n~ 시그 고 hod Nene\n2,998 =\nSa 오셔 ~\nSeth\n. i - ae 1.598\n시 a .\n200 fat BeBe Pen P Ree\nao]! eset mcs | [om Pare oS\nSash], eo Beppo Spa\nSn, | | 424 82 ph 20806 3 내\n=e |] ) foe BBE Sty\nCHEE? DB\nee cem he at ee cel ia v\n- oo een ne\n|p. 1,298 a\n> ~ ~ 니이 Pitt\nOf 우바 바도 지 건 435\n~ 40 = Some 그.\n(Sloss! aS) 222.\n",
+    "parsed": {
+      "Title": "Ose QO ~ 조르주 ee eS ae Ae",
+      "ItemNo": "",
+      "Price": 20806.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000041.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 209,
+      "nums": 25,
+      "words": 159
+    },
+    "text": "i Se ee ~ 에\nLi ad ~ ~ 다 . ~\n— ~ ~ ee ~\n= = Ss\ntes! 000 —- a\nMess ios > . .\n~ i- ~ . } Pie ~\nao ~. . ~\nPTE (르이 기\n오타 스스 ST\n— ~ 2. ' 7 ~ ~\ni 0 2 ：\n4 ne axe\n—- a fi a 7\n> a? = : aa —\ntf ： an\n9 a bing\na (eae\n가 ~\n—— ea\nAt\n때 ： 135\n~, je > an\n== bese i-7]-~ Se\nPf BS see] fe Bere) =\n=| 35325. |  ) SG 음소\n두 오를 들으 이 é\n= 85s EA es Sl 연수\n더 ~ 은 pes > - . =\n- 수\n0 그 으 에 =\n~ ~. _ ： 이 ~ -\nit” —*—= 2 0 겨 ee\n~ ~ ~~ oo 가\n(es 7 ^ ~ ... 애매 - =\n",
+    "parsed": {
+      "Title": "i Se ee ~ 에 Li ad ~ ~ 다 . ~",
+      "ItemNo": "",
+      "Price": 35325.0,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000042.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 183,
+      "nums": 30,
+      "words": 123
+    },
+    "text": "1 가\n~ ae\n~ / 드 2 | =\n~ Ss! 0 pi.\n\nSp ~ - ~ 때 이\n000: _ “Pop tee . . —~y*\n| i 0 ?\n=a? Pood | = ee [11 |\n290 시 fo dt — Sey\nma | hes 1117,\n| SS PS\n때 _ 고 eS\n7 f > 2 pes - A For:\n: [ 12030 ay 더 he 도서 weil\n> ~ 도굴 ifersye. [~ Pp; Gu\nrary 는 기시? OF TT oie\n05000 Tae ke\n~ [ES\n80 tr\nee ! = 고투\na ae eas\n— mt A wre IO ~\n~ fh Sa en 나타 소견\n~ fv- pel. 내 ae f _\n~ Esse Re] Mr | =\n",
+    "parsed": {
+      "Title": "~ ae Sp ~ - ~ 때 이",
+      "ItemNo": "",
+      "Price": 12030.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000043.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 246,
+      "nums": 42,
+      "words": 162
+    },
+    "text": "> PSE ~ Le\nSS\n280 . SS ~ S44, a,\n~ . 배지 주} re 별 이 |\n~ _ SS ae\n~ ~ a ~ . — - 1,998\n. \\ —— . 0 . le\n~ W. 이고\n더 - tf fms i\nEe ay,\nae tof 1 i= iol\nfeel DIP ss. [x ad Fy\nee Om Rg) eg 우나\nre ment: ‘\noe _— 4,\n1,598 boa |\n느 ~ = Je 2878 of\nfe oo : Loe aie\nes 0 tame heey .\n자. 1- Ted [ee TE “or 일\n게시 - 02 i ts oe an ia ty 6\nLf! / 0008 Wi bes face Ka\n불스 수 ae eas eS 2, 4 -\nRex Br fe a aay 「.\n627 137 0) ES 도 Bap cl)\n— abs | 본\nSS SAS] ry\n~ aS. Fe\neae E 22 vig\n“Gp! 」 으으 오이, ) 2 다\n2) at 아 이 식년\nes) Ne\n",
+    "parsed": {
+      "Title": "> PSE ~ Le ~ . 배지 주} re 별 이 |",
+      "ItemNo": "",
+      "Price": 2878.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000044.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 232,
+      "nums": 42,
+      "words": 148
+    },
+    "text": "a SAD fe 의 이기 =e\n[eo — +}\n= 1260] a ee J = =~\n[ 1.355 [ a\n~ _ 그 ao - 1 996\nㆍ \\ Tf . ! _— SS\nco 기 | | ~~ - . - … ㅜ ~\n= Fob ~ —\na peau /. =r} 오스\nSe LES | Ses\n‘ose eG see 6\nee as trans, ~ $ 15] weet! ;\nLae ~ fog *\n[Ex =\n! 1.598 으으 | us\n2.878 ?\n0 dt <i aoe ㆍ?\na 0504 버는 AS EK Fi;\nBe fa 고서 a fres t=\n2 Be fe FS aia rf\n0 20506) 2 [pees Lag\nLTE ES i=| =o tir\n00. SETS » SAS ; 자\n2 To\n| IE 오이 71\n> PVE 고 은, 2. -\n~ =] ora) \\ yr], ?\n개다 it Ie, oo y ve «CO -™\n",
+    "parsed": {
+      "Title": "a SAD fe 의 이기 =e [eo — +}",
+      "ItemNo": "",
+      "Price": 20506.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000045.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 194,
+      "nums": 30,
+      "words": 134
+    },
+    "text": "“Sef. 이 SLES PG poet\n\nSs PFT i 02\n\n이 오스 ae — ry i\n\nCaf PMs\n\n| SY, 0 Te. a” 내 . :\n\n~~ hovel 이 . if\n— a : i’\n. 이 00 : bs / 7 《-\n\na 이하 25 | |\n2, Lesa YO SS\ney [SSS ! if 고 9\nttn ~ > * 해이, St ¥ “>\n| S8hs iis =:\naa 00720 PE: 93\n\nToe [7 도\nee es\nHER ony AT are :\nee) Ff ops SS\nSf gt ES\n= = 3 tes en! he ~ 000\naL 7. = thie SNe x\noT > : 00 oo\n45 —\nx 니아 > 7 x = .\nBa =) Tee >\nfy SION 내\nets EP ty i\na a | ee 3\n",
+    "parsed": {
+      "Title": "“Sef. 이 SLES PG poet 이 오스 ae — ry i",
+      "ItemNo": "",
+      "Price": 720.0,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000046.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 240,
+      "nums": 39,
+      "words": 162
+    },
+    "text": "Estat | 7, 7)\nie. 4 |} ㆍ\nfio fs oe i Ppt\nee | —\na a f 1 71\n~ heer : ee . 리우 x0\neee | 1 ee ATE\n——- oe ~, a \\ yr |\nNa iawn RA] bes\nNe 1 7 ~ 얼\n277 1 |\nRAK —~ Gzy se\n(3205 ea | =\nea 가 . wettacgths iva = —\nbem \"te jc , eee =\n4 , 수이 ， Sie\n= [ee\n이스 1.598 nit 2878 : rt :\n\n7 al ve, ~\nTEES] 000\nRE iceey 18 Te\nee: ay be ne oss oe Lp Seats\nETE = cs Re ree rey.\na 도서 『 — 호\nㆍ 구로 4] tens “| re wi\n^ <x rw, a La he es) ry: 이 Tr 내\nSN Se SES\n\n6 = pS\nle, ‘y\n~ af 김\nees “rt ve [a\n~ 고즈 YL rr 000 ：\nSpee pes 이) 0! .\n지영 aN=——\n",
+    "parsed": {
+      "Title": "fio fs oe i Ppt ee | —",
+      "ItemNo": "",
+      "Price": 3205.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000047.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 181,
+      "nums": 29,
+      "words": 123
+    },
+    "text": "Sa ee Ry pet\noS 2800 / 2 기 납\n더 [. 1,093 고 piu\nST def\nti a ㆍ\n~ . - PPO GAIN\neel f ieee tfc\nfad [SeSejdrr[[eog\nSeon 01000 Gf fern\n= ~ HP 7 Ff)\naati 고 Po re\n1,598 cared [ 해\n) Span f\nEW FV A oe\npee hf Se 1 pb otek\n] or Ab SE et ~ eo\nose arg BLE Te EN\n5 SES = ly rs = 00004\nee TS eR\nPine —= ae ) 다다오 치\n[er > Seti fe\n. 이 더 . vt\n수 = vee,\npte pec’ 00 , 님 r\nSasa) ve )1^ ~\nfaz. Gey ~\" U i] ~ ~\neat bon OS Ir ~\n",
+    "parsed": {
+      "Title": "Sa ee Ry pet ST def",
+      "ItemNo": "",
+      "Price": 2800.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000048.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 302,
+      "nums": 46,
+      "words": 210
+    },
+    "text": "€ i aaa, eg\ngeo YOO # mo Ft 증오\na | \"~ 2\nse | iat SS 나고\n 7.98 2 {t ~ [=\n~ co. a 5,498\n7 ~~\n가가 fa\ned Ml es as) ee aay\n7 z SH ESY pee] [ae] © Fa\n535 ff ) ) 바오 아가 ss\noe ry fee ey 라 =\nies” ry J SRE SS SSP 8\nee 1y SES, . 스 > = | , 소\nPan - Spies ety te, ie, 살기 고 S\na I: a Se Ste oS .\n/ i 스가 우\n) ate =\nal Ht —\n때  - 1,488\n. 【 ~ a. Sa\nay! Dom ve We 0 Veo fees >\n“= sn he ty eS te > >.\noy I i Tae Gt tes 4962 aaa\nSHLD Bye cee eS 스오 FT.\nae IT pee bs 개도 ~ [:\n7 Ie BES = ae =\n! 0006 (\"ies 17\nCAD eS =)\n= SS Ei EN (1\nyp seek: Recah 2 | a ai\n' SH NY ne\n가 =\non 21047\nvpn. 00”\nBh 1: fe. = eee ㅣ\nern ~ 998\nve ys : a a\nid aro eet\n1 | ~ oN, = ~~ |J~ ~\n, ae\n_\n",
+    "parsed": {
+      "Title": "€ i aaa, eg geo YOO # mo Ft 증오",
+      "ItemNo": "",
+      "Price": 21047.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000049.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 285,
+      "nums": 44,
+      "words": 197
+    },
+    "text": "“er WA) 이 I. So\n| AY se eee\nval ) At he RT ee\n1,998 et 2 Ime\nhd 20 이 / 대 패는\n. dk ayaa 5.498\n. Jt ps in\n42771 1771 0 em] ee\nDey ht . : = ~ cw pus -\nSe Tas BSS | S/S] {Sop\nae ) ) fe SS Bs Jee ew fi\nhae ) 5] 2 사 ES | my ie\n= I; we |S fey os ; wan Be\nmY og ee EY oe, | SS pS\n~~ SPY e wie ees SLOP f+. 에\n~ 제 ~\n- 아녀 0 (, = O-.\nfe St a\n; t ‘if {sees 은 = ma 1,488\n: ‘>, SPS EG ff 2222-\ni ny Bs Gore ef = : So\ny ie a ~ aye cs S ; ia\nVy ite 9 초 스 에 1 oy 2 de\n) ? ah era 21 ~ Ses 122 ~\n7p SSS BSS\nve. ~RAbed Sob. Wan a ee\nMe 가) ze\nYeo Sis [-\nr > ~ ! 오오 _ iz\nrr ^ / ~ ~~ 998\nr \" 내 때 으으\n’ > … = June are\n",
+    "parsed": {
+      "Title": "“er WA) 이 I. So | AY se eee",
+      "ItemNo": "",
+      "Price": 42771.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000050.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 286,
+      "nums": 41,
+      "words": 204
+    },
+    "text": "el 님 tet, —™ ㆍ\nㆍ” jo Se /\n7 , 0”\n입어도 가 = ~e.\nrr 7 a Ps 때\nnf) 32030\nry fois se: [K/L 3) (~\n} a ons vis ites. ~ ) ~ ~\nty | 기르기 eases] [Sey\nhy, store. (LN went i) pate ak\nVeo ep TFS em Cay Som] js\n글 ~ 0005 Ste | Sen ; =\nㆍ DSSS 서드 0 도사\n0 Re Ll TO Sa\nA SSS S22\niF 009 70722\n' vv tgs 0:\n【 ‘ Peet : 가 las =\neo Od eee\n… Py Set ee\nperigee: 난소 나\nTEN Pea og oy 6\nBay Ten RS ee! ve 이 11\n4 oar 020 aN Steet Pr, ~ —\n“T : a Y3 FS LN [ — po\n>» ^ ~ ~ — v ~ , a *~ 이그\nys Ie, SS En . = 000 으으\na oN PP oF Ag mat\n~ pert aN re =p ~ .\nSaic\\) A fe at =>\n~ . 구기 때\nSed’ mS 66\nee isn =\ni ee ae\n{/ 7 | 시 ~ 뜨고\n이 pwr, el\n/ ^ 나 ~ ~.\nwe ~ To, 2\nAF a) 내 / Se.\n",
+    "parsed": {
+      "Title": "el 님 tet, —™ ㆍ ㆍ” jo Se /",
+      "ItemNo": "",
+      "Price": 70722.0,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000051.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 268,
+      "nums": 32,
+      "words": 204
+    },
+    "text": "oo” re en > \"Th\n(Ny eS\na ee 추\na vss] 때 at 2S.\n~ 、 고\n—- | =\na 000\nST 이아 ~ . ㆍ: “gs |\n—j/>-= . ~ 그 493\n=) ~} OT ie Ee ——\nSi fien. | Joep... | =. ~~ 1 2,\ni Porac] t~ 0 x wry ~— Y ee\nSt 45g ~ —_ 7\n주, 0. > >= 0\n~. ‘* i pn SE) 7\na 가 Tora ot FE aa —\nee) Sere Aen fF pees ＊“ 20\n. . ij Seely A, irk\n——— ne\n029 = ze)\n=. re ~ ~ '\nae ~~ — 스 느 이 이여\n나 래이 Pd gm\n노은 으 은\n~ 00 wo i a\nio [z= pj ei =\n^ 오우 Pele j : . St 디제 지\n거너 a 1 = {= ff — :\nbos eh SH | =~ {j= = “SS\n0 바라지 NS Eh\nSh... = ~ 오고 “|\nieee _. 새우\nrl 998 ee tay |\nee | .\n)^~~ 때 시 은\n내 . ~ 시공 a ‘ Ts\n： =. 7 —— 0 ”、 시기 _\n{yo ~ 더그 Mee /4\n7 . + 가 , by\n",
+    "parsed": {
+      "Title": "oo” re en > \"Th (Ny eS",
+      "ItemNo": "",
+      "Price": 998.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000052.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 280,
+      "nums": 32,
+      "words": 216
+    },
+    "text": "_ 내 a . 시 AS 그\nSS . oe 고 ~.\n. : . Ooo.\n~~ ` nt tg: Ree TE 7\nalld [ove ~\n시 ~ [ont ~ ~\n. a . —__ 4,798 \"\nSRT Aaa La ne 이 그 ~\n~ 개 . i , 7 —\nSee es | { ee 04 ~\n도 이 ee aan\nfa eee Ih LVS\ne ieee et 내\nSSH. fefepeaylo K\nSESH BETS _\na2 { ~ ~ ~ ~ 겨자 ei\n= 2115 -* :\nawe kt V2 ee ASH]\n- mf ee, ge 0\n가 yy \\ 나아 cr [OG tray\ni . ~~. a\n“Len ote\n~ 소토\n이 ~ 2598\n—.. en =\n_ a =\nyo <= ， _ coe! ws\n- ~~ ff | oo Pee\n~ 1 =\nBee GS pe] PEE\n— = ~ 도\nee 20000, ~\n그가 구주 - 그 -\n{FE 2 oan | a “Ty\neal iy Nhe a | es ft 은\nzorceone = a ~- 설 ㅡ | —\n5-59 ene gg ene Se, Sarin ~\n. ‘ 가 ~”\n은 ~ 가서 가\n. 그\n7 7 an ==,\n~ > 기 ee oe (= 고 4 .\na 내 fey\n.. | | i: — \\ PNA Protkcar\n",
+    "parsed": {
+      "Title": "_ 내 a . 시 AS 그 SS . oe 고 ~.",
+      "ItemNo": "",
+      "Price": 20000.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000053.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 142,
+      "nums": 19,
+      "words": 104
+    },
+    "text": "oem POM G | a\n아시 Re\nae ee 7 oe\n~~ fp SN 때 5\n. =! { / YS , 00 ~\n02 - , ㆍ 11 MA ome ^\nNand bates ] 4 Os _\noie SES] | PS\nLOIN feels coed POY eae]\nnnn keel al eS [est :\n— . “s wd: 고 :\n~ er — ‘. g\n| — Dera,\n398 =\ney we Me ” ~ it\nee 22200 |:\n=~ 아아 ~\n= = = in\n— 0 — a 1 수 i) 을, _\nAZE)E{ [feito 재\nSe eee _ ? ww :\n=e\n",
+    "parsed": {
+      "Title": "oem POM G | a 아시 Re",
+      "ItemNo": "",
+      "Price": 22200.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000054.jpg",
+    "meta": {
+      "variant": "inv",
+      "score": 41,
+      "nums": 5,
+      "words": 31
+    },
+    "text": "SO | LK ate es\n~ . 호 a a. : = ^\n= eel fm 자\n2 4.980\n~ oo ~~\n} ~y — ~ .\nAgs, 고\nRET 의\n",
+    "parsed": {
+      "Title": "SO | LK ate es ~ . 호 a a. : = ^",
+      "ItemNo": "",
+      "Price": 4.98,
+      "FinalPrice": 2.0,
+      "Remarks": ""
+    }
+  },
+  {
+    "frame": "frame_000055.jpg",
+    "meta": {
+      "variant": "th",
+      "score": 190,
+      "nums": 13,
+      "words": 164
+    },
+    "text": "wr . *, a e* 3 @ Se ~\n이 이 - o ~ f\nwert 6“ a ———\naT ad ㆍ 후 * 「 다 eo\n~ ^ 2 을 ve ? 2.\n” se ㅜㅠ ee ee\na ee 이아 2 te ~\nㆍ - a - + ~ 0 sae\n~ * ~ 고 2 ㆍ\n~ 1 ~ >\not t- . ^ ~] 건 oe\n= en a oo 그 -, > ~\na ete ee es - a\n><\" 그 고 A\n\"> cr te gi\nas (Pele Boy\n~ “ae fh 8\n- “~ a ‘“ 7 * ans - .\n= ~ ~ - ~ a 7 ,\n주 호 이 - ar ae a6 Sy\n‘ wt em, ~ oa 스고\n~ ‥ ~—, 가 ㆍ “ aS\n주 님 <,\" aaa oe -\na ae a .\n“~ . 0 ~ .\n- ‘we\n. a, vr? —“_\nA ~\n* ^. ~\nfe\n",
+    "parsed": {
+      "Title": "이 이 - o ~ f aT ad ㆍ 후 * 「 다 eo",
+      "ItemNo": "",
+      "Price": 8.0,
+      "FinalPrice": 1.0,
+      "Remarks": ""
+    }
+  }
+]

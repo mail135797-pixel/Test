@@ -1,0 +1,62 @@
+[
+  {
+    "frame": "frame_000010.jpg",
+    "box": [
+      616,
+      305,
+      222,
+      163
+    ],
+    "phash": "c33c585b3d4ab562",
+    "item": "583950",
+    "price": 1098.0,
+    "title": "Lon 4 もタバルレアーレク ブリ",
+    "item_raw": "583950\n",
+    "price_raw": "1098\n"
+  },
+  {
+    "frame": "frame_000011.jpg",
+    "box": [
+      677,
+      241,
+      234,
+      168
+    ],
+    "phash": "ca174e5e354ab570",
+    "item": "83950",
+    "price": 1098.0,
+    "title": "ユーツイ 39 レーラプテリリー",
+    "item_raw": "83950\n\n29\n\n7\n\n34\n",
+    "price_raw": "1098\n"
+  },
+  {
+    "frame": "frame_000018.jpg",
+    "box": [
+      585,
+      289,
+      207,
+      163
+    ],
+    "phash": "db3dd05ba54aa512",
+    "item": "587821",
+    "price": 548.0,
+    "title": "me om 1 수 호  EE oom EN NR",
+    "item_raw": "587821\n\n1\n",
+    "price_raw": "548\n"
+  },
+  {
+    "frame": "frame_000020.jpg",
+    "box": [
+      549,
+      280,
+      220,
+      176
+    ],
+    "phash": "9b2dd25ba54aa552",
+    "item": "58782",
+    "price": 548.0,
+    "title": "ery thai DX Oh",
+    "item_raw": "58782\n",
+    "price_raw": "548\n"
+  }
+]
