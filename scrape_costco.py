@@ -5,6 +5,7 @@ import time
 import re
 from urllib.parse import urljoin, quote
 import os
+import difflib
 
 # Categories list provided by the user
 CATEGORIES = [
@@ -36,6 +37,10 @@ HEADERS = {
 
 OUTPUT_FILE = "costco_products.xlsx"
 
+# Environment variable for Yahoo ID. User must set this.
+# Example: export YAHOO_APP_ID="your_app_id"
+YAHOO_APP_ID = os.environ.get("YAHOO_APP_ID")
+
 def get_page(url):
     try:
         response = requests.get(url, headers=HEADERS, timeout=30)
@@ -60,31 +65,80 @@ def parse_item_number(url):
         return match.group(1)
     return "N/A"
 
-def search_jan_code(title, item_number):
+def clean_title_for_search(title):
     """
-    Attempts to find JAN code by searching the internet (DuckDuckGo HTML).
-    Note: This is unreliable and slow for many items.
+    Remove "Costco" and specific patterns to improve search results.
     """
+    # Remove "Costco" or "コストコ"
+    title = re.sub(r'Costco|コストコ', '', title, flags=re.IGNORECASE)
+    
+    # Reduce multiple spaces
+    title = re.sub(r'\s+', ' ', title).strip()
+    return title
+
+def calculate_similarity(s1, s2):
+    """
+    Calculate similarity ratio between two strings using SequenceMatcher.
+    """
+    return difflib.SequenceMatcher(None, s1, s2).ratio()
+
+def fetch_jan_from_yahoo_api(title, price_str):
+    """
+    Fetch JAN code from Yahoo! Shopping API.
+    """
+    if not YAHOO_APP_ID:
+        return ""
+
+    url = "https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch"
+    
+    cleaned_title = clean_title_for_search(title)
+    
+    # Construct query: Title + "コストコ" to prioritize Costco items
+    query = f"{cleaned_title} コストコ" 
+    
+    params = {
+        "appid": YAHOO_APP_ID,
+        "query": query,
+        "results": 5, 
+        "sort": "-score"
+    }
+
     try:
-        # Construct query: Title + JAN
-        # We clean the title a bit
-        clean_title = re.sub(r'[\(\)（）]', ' ', title).strip()
-        query = f"{clean_title} JAN"
-        encoded_query = quote(query)
-        url = f"https://html.duckduckgo.com/html/?q={encoded_query}"
+        response = requests.get(url, params=params, timeout=10)
         
-        # Randomize/Wait to avoid rate limits if running in loop
-        # time.sleep(1) 
+        if response.status_code == 429:
+             print("Rate limited. Waiting...", flush=True)
+             time.sleep(5)
+             return ""
+             
+        response.raise_for_status()
+        data = response.json()
         
-        response = requests.get(url, headers=HEADERS, timeout=10)
-        if response.status_code == 200:
-            # Look for 13 digit number starting with 45 or 49
-            text = response.text
-            jans = re.findall(r'(4[59]\d{11})', text)
-            if jans:
-                return jans[0]
-    except Exception:
-        pass
+        hits = data.get("hits", [])
+        best_match_jan = ""
+        highest_score = 0.0
+
+        for hit in hits:
+            item_name = hit.get("name", "")
+            jan_code = hit.get("janCode", "")
+            
+            if not jan_code:
+                continue
+                
+            # Filter by name similarity
+            similarity = calculate_similarity(cleaned_title, item_name)
+            
+            if similarity > highest_score:
+                highest_score = similarity
+                best_match_jan = jan_code
+        
+        # Threshold for acceptance (0.3 is lenient)
+        if highest_score > 0.3:
+            return best_match_jan
+
+    except Exception as e:
+        print(f"Yahoo API Error: {e}", flush=True)
+        
     return ""
 
 def extract_products(html, base_url):
@@ -104,12 +158,8 @@ def extract_products(html, base_url):
             item_number = parse_item_number(full_link)
             price = parse_price(item)
             
-            # JAN Code extraction (Placeholder / Slow)
-            # For 8000 items, we cannot run this synchronously.
-            # We will populate it as empty string for now, or run for a sample if needed.
-            jan_code = "" 
-            # Uncomment below to enable search (WARNING: Very slow and will get blocked)
-            # jan_code = search_jan_code(title, item_number)
+            # JAN Code is populated in post-processing
+            jan_code = ""
             
             products.append({
                 "Title": title,
@@ -133,68 +183,91 @@ def extract_products(html, base_url):
 
 def save_data(data):
     df = pd.DataFrame(data)
-    # Reorder columns: A: Title, B: Link, C: Item Number, D: Price, E: JAN Code
     df = df[["Title", "Link", "Item Number", "Price", "JAN Code"]]
     df.to_excel(OUTPUT_FILE, index=False)
     print(f"Saved {len(data)} products to {OUTPUT_FILE}", flush=True)
 
+def process_jan_codes_inplace(df):
+    """
+    Iterates through DataFrame and fetches JAN codes for missing entries.
+    """
+    print("Starting JAN Code extraction via Yahoo! Shopping API...", flush=True)
+    print(f"API Key present: {bool(YAHOO_APP_ID)}", flush=True)
+    
+    if not YAHOO_APP_ID:
+        print("WARNING: YAHOO_APP_ID environment variable is not set. Skipping JAN fetch.", flush=True)
+        return
+
+    count = 0
+    total = len(df)
+    
+    for i in range(total):
+        # Skip if JAN already exists
+        if not pd.isna(df.at[i, "JAN Code"]) and df.at[i, "JAN Code"] != "":
+            continue
+            
+        title = df.at[i, "Title"]
+        price = df.at[i, "Price"]
+        
+        jan = fetch_jan_from_yahoo_api(title, price)
+        
+        if jan:
+            df.at[i, "JAN Code"] = jan
+            
+        count += 1
+        
+        # Rate Limiting (0.5s sleep = 2 requests/sec)
+        time.sleep(0.5) 
+        
+        # Save periodically
+        if count % 100 == 0:
+            print(f"Processed {count}/{total} items. Saving progress...", flush=True)
+            df.to_excel(OUTPUT_FILE, index=False)
+
+    print("JAN Code extraction complete.", flush=True)
+
 def main():
-    # Optimization: If file exists, load it instead of re-scraping
+    # 1. Load or Scrape Data
+    all_data = []
     if os.path.exists(OUTPUT_FILE):
         print(f"Loading existing data from {OUTPUT_FILE}...", flush=True)
         df = pd.read_excel(OUTPUT_FILE)
-        
         # Ensure JAN Code column exists
         if "JAN Code" not in df.columns:
             df["JAN Code"] = ""
+    else:
+        # Normal scraping logic if file doesn't exist
+        for category_url in CATEGORIES:
+            print(f"Processing category: {category_url}", flush=True)
+            current_url = category_url
             
-        # Optional: Try to fill JAN code for a few items to demonstrate
-        print("Attempting to fetch JAN codes for first 5 items...", flush=True)
-        for i in range(min(5, len(df))):
-            if pd.isna(df.at[i, "JAN Code"]) or df.at[i, "JAN Code"] == "":
-                title = df.at[i, "Title"]
-                item_num = df.at[i, "Item Number"]
-                print(f"Searching JAN for: {title}", flush=True)
-                jan = search_jan_code(title, item_num)
-                if jan:
-                    print(f"  Found: {jan}", flush=True)
-                    df.at[i, "JAN Code"] = jan
-                else:
-                    print("  Not found", flush=True)
-                time.sleep(1) # Polite delay
-        
-        # Save updated dataframe
-        df = df[["Title", "Link", "Item Number", "Price", "JAN Code"]]
-        df.to_excel(OUTPUT_FILE, index=False)
-        print(f"Updated {OUTPUT_FILE} with JAN Code column", flush=True)
-        return
-
-    # Normal scraping logic if file doesn't exist
-    all_data = []
-    for category_url in CATEGORIES:
-        print(f"Processing category: {category_url}", flush=True)
-        current_url = category_url
-        
-        while current_url:
-            print(f"  Fetching page: {current_url}", flush=True)
-            html = get_page(current_url)
-            if not html:
-                break
+            while current_url:
+                print(f"  Fetching page: {current_url}", flush=True)
+                html = get_page(current_url)
+                if not html:
+                    break
+                    
+                products, next_url = extract_products(html, current_url)
+                all_data.extend(products)
+                print(f"  Found {len(products)} products.", flush=True)
                 
-            products, next_url = extract_products(html, current_url)
-            all_data.extend(products)
-            print(f"  Found {len(products)} products.", flush=True)
-            
-            save_data(all_data)
+                if next_url == current_url:
+                     break
 
-            if next_url == current_url:
-                 break
+                current_url = next_url
+                time.sleep(1)
+        
+        print(f"Total products extracted: {len(all_data)}", flush=True)
+        df = pd.DataFrame(all_data)
+        if "JAN Code" not in df.columns:
+            df["JAN Code"] = ""
+        save_data(df.to_dict('records'))
 
-            current_url = next_url
-            time.sleep(1)
-            
-    print(f"Total products extracted: {len(all_data)}", flush=True)
-    save_data(all_data)
+    # 2. Process JAN Codes
+    process_jan_codes_inplace(df)
+    
+    # 3. Final Save
+    save_data(df.to_dict('records'))
 
 if __name__ == "__main__":
     main()
