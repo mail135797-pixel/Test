@@ -1,0 +1,61 @@
+{
+  "asin": "B099DLV8QN",
+  "brand_tone": "Clean, Innovative, Reliable",
+  "images": [
+    {
+      "image": 1,
+      "headline": "",
+      "subcopy": "",
+      "labels": []
+    },
+    {
+      "image": 2,
+      "headline": "その静寂、あなただけのもの",
+      "subcopy": "ウルトラノイズキャンセリング 2.0",
+      "labels": ["環境に合わせて自動調整", "屋外モード", "交通機関モード", "屋内モード"]
+    },
+    {
+      "image": 3,
+      "headline": "心に響く、深みのある低音",
+      "subcopy": "独自のBassUpテクノロジー搭載",
+      "labels": ["11mm ドライバー", "迫力のサウンド"]
+    },
+    {
+      "image": 4,
+      "headline": "クリアな声を、相手に届ける",
+      "subcopy": "ノイズリダクション機能搭載 6マイク",
+      "labels": ["WEB会議対応", "クリアな通話", "音声強調"]
+    },
+    {
+      "image": 5,
+      "headline": "アプリで広がる、多彩な機能",
+      "subcopy": "ゲーミングモード・「イヤホンを探す」機能",
+      "labels": ["カスタマイズ", "低遅延モード", "睡眠モード"]
+    },
+    {
+      "image": 6,
+      "headline": "充実のパッケージ内容",
+      "subcopy": "最大35時間の長時間再生",
+      "labels": ["イヤーチップ 5サイズ", "ワイヤレス充電対応", "USB-C急速充電"]
+    },
+    {
+      "image": 7,
+      "headline": "一日中、快適なつけ心地",
+      "subcopy": "人間工学に基づいたデザイン",
+      "labels": ["IPX5防水", "フィット感", "軽量設計"]
+    },
+    {
+      "image": 8,
+      "headline": "世界で支持されるSoundcore",
+      "subcopy": "Ankerのオーディオブランド",
+      "labels": ["最大24ヶ月保証", "信頼のサポート", "2000万人以上の選択"]
+    }
+  ],
+  "sources": [
+    {
+      "type": "amazon_page",
+      "url": "https://www.amazon.co.jp/dp/B099DLV8QN",
+      "captured_at": "2023-10-27"
+    }
+  ]
+}
