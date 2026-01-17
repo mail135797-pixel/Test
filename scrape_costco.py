@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 import re
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 import os
 
 # Categories list provided by the user
@@ -46,16 +46,12 @@ def get_page(url):
         return None
 
 def parse_price(product_item):
-    # Try to find visible price
     price_elem = product_item.select_one("sip-format-price .notranslate")
     if price_elem:
         return price_elem.get_text(strip=True)
-    
-    # Try to find login message
     login_elem = product_item.select_one(".price-panel-login span")
     if login_elem:
         return login_elem.get_text(strip=True)
-    
     return "N/A"
 
 def parse_item_number(url):
@@ -64,6 +60,33 @@ def parse_item_number(url):
         return match.group(1)
     return "N/A"
 
+def search_jan_code(title, item_number):
+    """
+    Attempts to find JAN code by searching the internet (DuckDuckGo HTML).
+    Note: This is unreliable and slow for many items.
+    """
+    try:
+        # Construct query: Title + JAN
+        # We clean the title a bit
+        clean_title = re.sub(r'[\(\)（）]', ' ', title).strip()
+        query = f"{clean_title} JAN"
+        encoded_query = quote(query)
+        url = f"https://html.duckduckgo.com/html/?q={encoded_query}"
+        
+        # Randomize/Wait to avoid rate limits if running in loop
+        # time.sleep(1) 
+        
+        response = requests.get(url, headers=HEADERS, timeout=10)
+        if response.status_code == 200:
+            # Look for 13 digit number starting with 45 or 49
+            text = response.text
+            jans = re.findall(r'(4[59]\d{11})', text)
+            if jans:
+                return jans[0]
+    except Exception:
+        pass
+    return ""
+
 def extract_products(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
     products = []
@@ -71,7 +94,6 @@ def extract_products(html, base_url):
     items = soup.select("sip-product-list-item")
     for item in items:
         try:
-            # Title and Link
             link_elem = item.select_one("a.lister-name")
             if not link_elem:
                 continue
@@ -79,28 +101,30 @@ def extract_products(html, base_url):
             title = link_elem.get_text(strip=True)
             relative_link = link_elem['href']
             full_link = urljoin(base_url, relative_link)
-            
-            # Item Number
             item_number = parse_item_number(full_link)
-            
-            # Price
             price = parse_price(item)
+            
+            # JAN Code extraction (Placeholder / Slow)
+            # For 8000 items, we cannot run this synchronously.
+            # We will populate it as empty string for now, or run for a sample if needed.
+            jan_code = "" 
+            # Uncomment below to enable search (WARNING: Very slow and will get blocked)
+            # jan_code = search_jan_code(title, item_number)
             
             products.append({
                 "Title": title,
                 "Link": full_link,
                 "Item Number": item_number,
-                "Price": price
+                "Price": price,
+                "JAN Code": jan_code
             })
         except Exception as e:
             print(f"Error parsing item: {e}", flush=True)
             continue
             
-    # Pagination
     next_page = None
     next_link_elem = soup.select_one("a.page-link[data-cy='page-link-next']")
     if next_link_elem:
-        # Check if parent li is disabled
         parent_li = next_link_elem.find_parent("li")
         if parent_li and "disabled" not in parent_li.get("class", []):
             next_page = urljoin(base_url, next_link_elem['href'])
@@ -109,18 +133,47 @@ def extract_products(html, base_url):
 
 def save_data(data):
     df = pd.DataFrame(data)
-    # Reorder columns to match request: A: Title, B: Link, C: Item Number, D: Price
-    df = df[["Title", "Link", "Item Number", "Price"]]
+    # Reorder columns: A: Title, B: Link, C: Item Number, D: Price, E: JAN Code
+    df = df[["Title", "Link", "Item Number", "Price", "JAN Code"]]
     df.to_excel(OUTPUT_FILE, index=False)
     print(f"Saved {len(data)} products to {OUTPUT_FILE}", flush=True)
 
 def main():
+    # Optimization: If file exists, load it instead of re-scraping
+    if os.path.exists(OUTPUT_FILE):
+        print(f"Loading existing data from {OUTPUT_FILE}...", flush=True)
+        df = pd.read_excel(OUTPUT_FILE)
+        
+        # Ensure JAN Code column exists
+        if "JAN Code" not in df.columns:
+            df["JAN Code"] = ""
+            
+        # Optional: Try to fill JAN code for a few items to demonstrate
+        print("Attempting to fetch JAN codes for first 5 items...", flush=True)
+        for i in range(min(5, len(df))):
+            if pd.isna(df.at[i, "JAN Code"]) or df.at[i, "JAN Code"] == "":
+                title = df.at[i, "Title"]
+                item_num = df.at[i, "Item Number"]
+                print(f"Searching JAN for: {title}", flush=True)
+                jan = search_jan_code(title, item_num)
+                if jan:
+                    print(f"  Found: {jan}", flush=True)
+                    df.at[i, "JAN Code"] = jan
+                else:
+                    print("  Not found", flush=True)
+                time.sleep(1) # Polite delay
+        
+        # Save updated dataframe
+        df = df[["Title", "Link", "Item Number", "Price", "JAN Code"]]
+        df.to_excel(OUTPUT_FILE, index=False)
+        print(f"Updated {OUTPUT_FILE} with JAN Code column", flush=True)
+        return
+
+    # Normal scraping logic if file doesn't exist
     all_data = []
-    
     for category_url in CATEGORIES:
         print(f"Processing category: {category_url}", flush=True)
         current_url = category_url
-        page_count = 0
         
         while current_url:
             print(f"  Fetching page: {current_url}", flush=True)
@@ -132,17 +185,12 @@ def main():
             all_data.extend(products)
             print(f"  Found {len(products)} products.", flush=True)
             
-            # Save progress after each page (or could do after each category)
-            # Saving after each page is safer if it crashes
             save_data(all_data)
 
             if next_url == current_url:
                  break
 
             current_url = next_url
-            page_count += 1
-            
-            # Polite delay
             time.sleep(1)
             
     print(f"Total products extracted: {len(all_data)}", flush=True)
