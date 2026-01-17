@@ -77,6 +77,23 @@ def ensure_dependency_available(dep, err, name: str) -> None:
         )
 
 
+def resolve_service_account_path(path_value: str) -> Path:
+    env_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+    if env_path:
+        return Path(env_path).expanduser().resolve()
+
+    path = Path(path_value).expanduser()
+    if path.is_absolute():
+        return path
+
+    script_dir = Path(__file__).resolve().parent
+    script_candidate = script_dir / path
+    if script_candidate.exists():
+        return script_candidate
+
+    return (Path.cwd() / path).resolve()
+
+
 def parse_drive_file_id(url: str) -> str:
     match = re.search(r"/file/d/([a-zA-Z0-9_-]+)", url)
     if match:
@@ -191,6 +208,40 @@ def ocr_image(image_path: Path, lang: str) -> str:
     return text
 
 
+def resolve_ocr_languages(requested_lang: str) -> str:
+    ensure_dependency_available(pytesseract, _pytesseract_exc, "pytesseract")
+    tesseract_cmd = os.environ.get("TESSERACT_CMD")
+    if tesseract_cmd:
+        pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+    try:
+        _ = pytesseract.get_tesseract_version()
+    except Exception as exc:
+        LOGGER.warning("Tesseract not available: %s", exc)
+        return ""
+
+    try:
+        available_langs = set(pytesseract.get_languages(config=""))
+    except Exception as exc:
+        LOGGER.warning("Unable to read tesseract languages: %s", exc)
+        return ""
+
+    requested = [lang.strip() for lang in requested_lang.split("+") if lang.strip()]
+    missing = [lang for lang in requested if lang not in available_langs]
+    if missing:
+        LOGGER.warning("Missing OCR languages: %s", ", ".join(missing))
+
+    usable = [lang for lang in requested if lang in available_langs]
+    if not usable and "eng" in available_langs:
+        LOGGER.warning("Falling back to eng OCR due to missing requested languages.")
+        usable = ["eng"]
+
+    if not usable:
+        LOGGER.warning("No usable OCR languages found; OCR will be skipped.")
+        return ""
+
+    return "+".join(usable)
+
+
 def parse_price_card(text: str) -> dict | None:
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     if not lines:
@@ -231,21 +282,16 @@ def parse_price_card(text: str) -> dict | None:
 
 
 def extract_price_cards(frame_paths: list[Path], lang: str) -> list[dict]:
-    ensure_dependency_available(pytesseract, _pytesseract_exc, "pytesseract")
-    tesseract_cmd = os.environ.get("TESSERACT_CMD")
-    if tesseract_cmd:
-        pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
-    try:
-        _ = pytesseract.get_tesseract_version()
-    except Exception as exc:
-        LOGGER.warning("Tesseract not available: %s", exc)
+    resolved_lang = resolve_ocr_languages(lang)
+    if not resolved_lang:
         return []
 
     seen = set()
     results: list[dict] = []
+    failures = 0
     for frame_path in frame_paths:
         try:
-            text = ocr_image(frame_path, lang=lang)
+            text = ocr_image(frame_path, lang=resolved_lang)
             parsed = parse_price_card(text)
             if not parsed:
                 continue
@@ -260,8 +306,11 @@ def extract_price_cards(frame_paths: list[Path], lang: str) -> list[dict]:
                     parsed["note"] = frame_path.name
             results.append(parsed)
         except Exception as exc:
+            failures += 1
             LOGGER.warning("OCR failed for %s: %s", frame_path, exc)
-    LOGGER.info("Extracted %s unique price cards", len(results))
+    LOGGER.info(
+        "Extracted %s unique price cards (ocr errors=%s)", len(results), failures
+    )
     return results
 
 
@@ -340,6 +389,13 @@ def main() -> int:
     log_path = work_dir / "logs" / "pipeline.log"
     setup_logging(log_path)
 
+    service_account_path = resolve_service_account_path(args.service_account)
+    if not service_account_path.exists():
+        LOGGER.error(
+            "Service account key missing at %s. Please download and place it.",
+            service_account_path,
+        )
+
     date_str = dt.date.today().strftime("%Y%m%d")
     video_path = work_dir / f"costco_video_{date_str}.mp4"
     frames_dir = work_dir / "frames"
@@ -374,8 +430,8 @@ def main() -> int:
         write_excel(extracted, excel_path)
 
         LOGGER.info("Uploading to Google Drive...")
-        upload_to_drive(pdf_path, args.drive_folder_id, Path(args.service_account))
-        upload_to_drive(excel_path, args.drive_folder_id, Path(args.service_account))
+        upload_to_drive(pdf_path, args.drive_folder_id, service_account_path)
+        upload_to_drive(excel_path, args.drive_folder_id, service_account_path)
 
         LOGGER.info("Pipeline complete.")
         return 0
