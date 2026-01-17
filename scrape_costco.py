@@ -107,8 +107,8 @@ def fetch_jan_from_yahoo_api(title, price_str):
         response = requests.get(url, params=params, timeout=10)
         
         if response.status_code == 429:
-             print("Rate limited. Waiting...", flush=True)
-             time.sleep(5)
+             print("Rate limited (429). Waiting 30s...", flush=True)
+             time.sleep(30)
              return ""
              
         response.raise_for_status()
@@ -213,14 +213,15 @@ def process_jan_codes_inplace(df):
         
         if jan:
             df.at[i, "JAN Code"] = jan
+            print(f"Found JAN for '{title}': {jan}", flush=True)
             
         count += 1
         
-        # Rate Limiting (0.5s sleep = 2 requests/sec)
-        time.sleep(0.5) 
+        # Rate Limiting (1.0s sleep = 1 request/sec)
+        time.sleep(1.0) 
         
         # Save periodically
-        if count % 100 == 0:
+        if count % 10 == 0:
             print(f"Processed {count}/{total} items. Saving progress...", flush=True)
             df.to_excel(OUTPUT_FILE, index=False)
 
