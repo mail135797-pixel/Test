@@ -1,6 +1,6 @@
 # QC Report: B09SKLH2BW
 
-## Status: FAILURE (Model Not Found)
+## Status: FAILURE (Nano Banana Model Not Found)
 
 ### 1. Workflow Check
 - [x] Step 1: PDP Snapshot (Manual verification due to anti-bot)
@@ -10,7 +10,7 @@
 - [x] Step 5: Prompts (Completed)
 - [x] Step 6: Image Generation 
     - **Image 1**: Previously generated (Imagen 4.0).
-    - **Image 2-8**: Failed. User requested `imagen-3.0-generate-001`, but API returned `404 NOT_FOUND` (Model not found).
+    - **Image 2-8**: Failed. User requested `nano-banana-pro-preview`, but API returned `404 NOT_FOUND` (Model not found).
 - [x] Step 7: Text Overlay Script (Completed on placeholders)
 
 ### 2. Compliance Check (Copy)
@@ -24,8 +24,10 @@
 - **Resolution**: 2000x2000.
 
 ### 4. Issues & Next Steps
-- **Issue**: `imagen-3.0-generate-001` is not available for this API key/version, despite user instruction. Previous successful run used `imagen-4.0-generate-001`.
-- **Action**: Check available models using `list_models.py` or revert to `imagen-4.0-generate-001` if acceptable.
+- **Issue**: `nano-banana-pro-preview` is listed in `list_models.py` but returns 404 when called via `generate_images`. This suggests it might not support the `generate_images` method or requires different parameters/access level.
+- **Action**: 
+    - Retry with `imagen-4.0-generate-001` which was successful previously.
+    - Or verify if `nano-banana-pro-preview` is a text generation model (LLM) rather than an image generation model.
 - **Result**: 
     - `B09SKLH2BW_01.png`: AI Generated (Imagen 4.0).
     - `B09SKLH2BW_02`...`08`: Placeholder with text overlay.
