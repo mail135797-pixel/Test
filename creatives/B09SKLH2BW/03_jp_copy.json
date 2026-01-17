@@ -1,0 +1,61 @@
+{
+  "asin": "B09SKLH2BW",
+  "brand_tone": "Clean, Professional, Skincare-focused",
+  "images": [
+    {
+      "image": 1,
+      "headline": "",
+      "subcopy": "",
+      "labels": []
+    },
+    {
+      "image": 2,
+      "headline": "古い角質・毛穴汚れをオフ",
+      "subcopy": "つるんとなめらかな肌へ",
+      "labels": []
+    },
+    {
+      "image": 3,
+      "headline": "3GF配合ピーリング",
+      "subcopy": "EGF / FGF / IGF (保湿成分)",
+      "labels": []
+    },
+    {
+      "image": 4,
+      "headline": "ぷるぷるのジェル",
+      "subcopy": "肌に優しい使い心地",
+      "labels": []
+    },
+    {
+      "image": 5,
+      "headline": "週1〜2回のスペシャルケア",
+      "subcopy": "洗顔後の清潔な肌に",
+      "labels": []
+    },
+    {
+      "image": 6,
+      "headline": "たっぷり使える150ml",
+      "subcopy": "顔だけでなく肘や膝にも",
+      "labels": []
+    },
+    {
+      "image": 7,
+      "headline": "しっとりとした洗い上がり",
+      "subcopy": "つっぱり感を抑えた処方",
+      "labels": []
+    },
+    {
+      "image": 8,
+      "headline": "cos:mura 公式販売店",
+      "subcopy": "こだわりのスキンケア",
+      "labels": []
+    }
+  ],
+  "sources": [
+    {
+      "type": "amazon_page",
+      "url": "https://amazon.co.jp/dp/B09SKLH2BW",
+      "captured_at": "2026-01-17"
+    }
+  ]
+}
