@@ -65,9 +65,9 @@ def generate_image(prompt, idx):
                 if response.generated_images:
                     return Image.open(io.BytesIO(response.generated_images[0].image.image_bytes))
             except Exception as e2:
-                print("Trying nano-banana-pro-preview...")
+                print("Trying imagen-4.0-generate-001...")
                 response = client.models.generate_images(
-                    model='nano-banana-pro-preview',
+                    model='imagen-4.0-generate-001',
                     prompt=prompt,
                     config=types.GenerateImagesConfig(
                         number_of_images=1,
