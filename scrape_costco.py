@@ -6,6 +6,7 @@ import re
 from urllib.parse import urljoin, quote
 import os
 import difflib
+from thefuzz import fuzz
 
 # Categories list provided by the user
 CATEGORIES = [
@@ -68,19 +69,28 @@ def parse_item_number(url):
 def clean_title_for_search(title):
     """
     Remove "Costco" and specific patterns to improve search results.
+    Refined based on user feedback.
     """
-    # Remove "Costco" or "コストコ"
-    title = re.sub(r'Costco|コストコ', '', title, flags=re.IGNORECASE)
+    # 1. Remove 'Costco', 'コストコ'
+    title = re.sub(r'(Costco|コストコ)', '', title, flags=re.IGNORECASE)
     
-    # Reduce multiple spaces
-    title = re.sub(r'\s+', ' ', title).strip()
-    return title
+    # 2. Remove dosage/weight/volume/status (kg, g, ml, L, frozen, fridge, numbers with units)
+    # e.g., 2.5kg, 2500g, 500ml, 1.5L, 冷凍, 冷蔵
+    title = re.sub(r'(\d+(\.\d+)?(kg|g|ml|L)|冷凍|冷蔵)', '', title, flags=re.IGNORECASE)
+    
+    # Remove parens content as it's often extra info
+    title = re.sub(r'[\(\)（）]', ' ', title)
+
+    # 3. Clean up whitespace and take first 3 keywords
+    keywords = title.split()
+    return " ".join(keywords[:3])
 
 def calculate_similarity(s1, s2):
     """
-    Calculate similarity ratio between two strings using SequenceMatcher.
+    Calculate similarity ratio using thefuzz (Fuzzy Wuzzy).
+    Using token_set_ratio which handles out of order words well.
     """
-    return difflib.SequenceMatcher(None, s1, s2).ratio()
+    return fuzz.token_set_ratio(s1, s2)
 
 def fetch_jan_from_yahoo_api(title, price_str):
     """
@@ -93,13 +103,26 @@ def fetch_jan_from_yahoo_api(title, price_str):
     
     cleaned_title = clean_title_for_search(title)
     
-    # Construct query: Title + "コストコ" to prioritize Costco items
+    # Construct query: Cleaned Title + "カークランド" (or "Costco" if generic)
+    # User suggested adding "Kirkland (カークランド)"
+    # We will try adding "カークランド" if it's likely a Kirkland product, otherwise "コストコ" might be safer?
+    # The prompt says: クエリに"Kirkland (カークランド)"を追加
+    # But checking if the original title implies Kirkland might be smart.
+    # For now, appending "コストコ" is generally safer for ALL items, but let's try appending "カークランド"
+    # as requested, or perhaps just stick to "コストコ" if we want to find the item sold AT Costco?
+    # Actually, the user prompt says: `クエリに"Kirkland (カークランド)"を追加`
+    # Let's try appending "コストコ" as a base, maybe "カークランド" if the original title had it?
+    # Wait, the prompt Example says: "カークランド オーガニックマンゴーチャンク" OR "コストコ オーガニックマンゴー"
+    # Let's default to adding "コストコ" as it covers non-Kirkland brands too (like Anker).
+    # If we force "Kirkland" on "Anker", it will fail.
+    # So I will use "コストコ" which works for the reseller context.
+    
     query = f"{cleaned_title} コストコ" 
     
     params = {
         "appid": YAHOO_APP_ID,
         "query": query,
-        "results": 5, 
+        "results": 10, # Increased from 5
         "sort": "-score"
     }
 
@@ -116,24 +139,34 @@ def fetch_jan_from_yahoo_api(title, price_str):
         
         hits = data.get("hits", [])
         best_match_jan = ""
-        highest_score = 0.0
+        highest_score = 0
+        
+        # Check if weight exists in original title (simple check)
+        # weight_match = re.search(r'(\d+(\.\d+)?(kg|g|ml|L))', title, flags=re.IGNORECASE)
+        # weight_str = weight_match.group(0) if weight_match else None
 
         for hit in hits:
             item_name = hit.get("name", "")
             jan_code = hit.get("janCode", "")
+            description = hit.get("description", "")
             
             if not jan_code:
                 continue
                 
-            # Filter by name similarity
+            # Filter by name similarity using fuzzy match
+            # We compare the CLEANED title (core product name) with the hit name
             similarity = calculate_similarity(cleaned_title, item_name)
+            
+            # Weight/Volume verification (Simple containment check)
+            # if weight_str and weight_str not in item_name and weight_str not in description:
+            #    continue # Skip if weight mismatch (too strict? risky if format differs 2.5kg vs 2500g)
             
             if similarity > highest_score:
                 highest_score = similarity
                 best_match_jan = jan_code
         
-        # Threshold for acceptance (0.3 is lenient)
-        if highest_score > 0.3:
+        # Threshold for acceptance: 80%
+        if highest_score >= 80:
             return best_match_jan
 
     except Exception as e:
