@@ -231,6 +231,16 @@ def parse_price_card(text: str) -> dict | None:
 
 
 def extract_price_cards(frame_paths: list[Path], lang: str) -> list[dict]:
+    ensure_dependency_available(pytesseract, _pytesseract_exc, "pytesseract")
+    tesseract_cmd = os.environ.get("TESSERACT_CMD")
+    if tesseract_cmd:
+        pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+    try:
+        _ = pytesseract.get_tesseract_version()
+    except Exception as exc:
+        LOGGER.warning("Tesseract not available: %s", exc)
+        return []
+
     seen = set()
     results: list[dict] = []
     for frame_path in frame_paths:
