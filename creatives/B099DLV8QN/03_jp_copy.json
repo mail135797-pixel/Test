@@ -1,0 +1,61 @@
+{
+  "asin": "B099DLV8QN",
+  "brand_tone": "Luxurious, Scientific, Radiant",
+  "images": [
+    {
+      "image": 1,
+      "headline": "",
+      "subcopy": "",
+      "labels": []
+    },
+    {
+      "image": 2,
+      "headline": "3つの成長因子が、美を目覚めさせる",
+      "subcopy": "3GF (EGF・FGF・IGF) 配合",
+      "labels": ["ハリ・弾力", "エイジングケア", "肌バリアサポート"]
+    },
+    {
+      "image": 3,
+      "headline": "濃密なとろみ、深層まで浸透",
+      "subcopy": "角質層のすみずみまで",
+      "labels": ["高保湿", "吸着浸透", "リッチな質感"]
+    },
+    {
+      "image": 4,
+      "headline": "厳選された美容成分",
+      "subcopy": "植物由来エキス × 最新科学",
+      "labels": ["植物幹細胞", "低刺激処方", "肌荒れ防止"]
+    },
+    {
+      "image": 5,
+      "headline": "自信あふれる、輝く素肌へ",
+      "subcopy": "毎日のスキンケアを特別な時間に",
+      "labels": ["ツヤ肌", "キメを整える"]
+    },
+    {
+      "image": 6,
+      "headline": "効果的な使い方",
+      "subcopy": "ライン使いでさらに効果アップ",
+      "labels": ["適量を手に取る", "優しくなじませる", "朝晩使用OK"]
+    },
+    {
+      "image": 7,
+      "headline": "韓国美容のプロフェッショナル",
+      "subcopy": "cos:mura (コスムラ) 公式",
+      "labels": ["日本公式販売店", "正規品", "信頼の品質"]
+    },
+    {
+      "image": 8,
+      "headline": "時を超えて、美しさを進化させる",
+      "subcopy": "TIMELESS EVOLUTION",
+      "labels": ["3GF配合", "120ml", "化粧水+乳液機能"]
+    }
+  ],
+  "sources": [
+    {
+      "type": "amazon_page",
+      "url": "https://www.amazon.co.jp/dp/B099DLV8QN",
+      "captured_at": "2023-10-27"
+    }
+  ]
+}
