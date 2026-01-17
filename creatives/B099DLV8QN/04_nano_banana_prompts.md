@@ -1,52 +1,51 @@
-# Nano Banana Pro Prompts: B099DLV8QN
+# Nano Banana Pro Prompts: B099DLV8QN (cos:mura 3GF Lotion)
 
 ## Common Settings
-- **Style**: Premium tech product photography, clean, minimal, studio lighting.
-- **Negative Prompt**: low quality, blurry, distorted, messy, watermark, text glitches, wrong logo, bad hands.
+- **Style**: Premium skincare photography, luxury, clean, radiant lighting, gold accents.
+- **Negative Prompt**: low quality, messy, dark, distorted text, bad face, extra fingers.
 - **Dimensions**: 2000x2000 px.
 
 ## Image 1: Main Image
 **Prompt**:
-> Photo of Anker Soundcore Life P3 wireless earbuds and charging case, navy/black color, isolated on pure white background (#FFFFFF). Case is slightly open showing the earbuds inside, or earbuds placed artistically next to the case. Sharp focus, professional product shot, soft shadows, no text, no props.
+> Professional product photography of a skincare lotion bottle labeled "3GF TIMELESS EVOLUTION SKIN LOTION". The bottle is cylindrical, likely silver or gold metallic finish or premium white with gold text. Isolated on pure white background. Sharp focus, high key lighting, soft reflection at the bottom.
 
 ## Image 2: Core Benefit
 **Prompt**:
-> Split composition. Left side: Blurry background of a busy city street or train interior symbolizing noise. Right side: Sharp, clear, serene close-up of the Soundcore Life P3 earbud.
-> **Overlay Text (Japanese)**: Headline "その静寂、あなただけのもの" (top center), Subcopy "ウルトラノイズキャンセリング 2.0" (below headline).
-> **Visual Elements**: Abstract sound waves fading away as they approach the earbud. Blue and black color palette.
+> Conceptual skincare shot. The 3GF Lotion bottle centered. Three glowing golden orbs or droplets floating around the bottle, representing EGF, FGF, IGF. The background is a soft, warm gradient of white and pale gold.
+> **Overlay Text**: Headline "3つの成長因子が、美を目覚めさせる", Subcopy "3GF (EGF・FGF・IGF) 配合".
 
-## Image 3: Sound Quality
+## Image 3: Texture
 **Prompt**:
-> Close-up dramatic shot of the earbud driver unit. "Exploded view" or "See-through" effect showing the internal 11mm driver and magnet. Dark background with golden or blue light accents emphasizing the bass vibration.
-> **Overlay Text**: Headline "心に響く、深みのある低音" (top), Subcopy "独自のBassUpテクノロジー搭載" (bottom).
-> **Labels**: "11mm ドライバー", "迫力のサウンド".
+> Macro shot of the lotion texture. A clear or slightly milky thick droplet of liquid on a smooth surface or a glass rod. The texture looks rich and moisturizing ("toromi"). Sparkling light effects to show hydration.
+> **Overlay Text**: Headline "濃密なとろみ、深層まで浸透", Subcopy "角質層のすみずみまで".
 
-## Image 4: Call Quality
+## Image 4: Ingredients
 **Prompt**:
-> Lifestyle shot: A professional Asian male or female in a bright home office, wearing the Soundcore Life P3 earbuds, smiling while on a video call (laptop screen visible in foreground or background).
-> **Graphic Overlay**: 6 small microphone icons pointing to the earbuds (3 on each side).
-> **Overlay Text**: Headline "クリアな声を、相手に届ける" (top left), Subcopy "ノイズリダクション機能搭載 6マイク" (below headline).
+> Composition of the lotion bottle with botanical elements. Subtle background of herbs or floral sketches in a scientific/clean style. Overlay of hexagonal chemical structure diagrams (faint) to imply "science + nature".
+> **Overlay Text**: Headline "厳選された美容成分", Subcopy "植物由来エキス × 最新科学".
 
-## Image 5: Functionality
+## Image 5: Lifestyle
 **Prompt**:
-> Product photography + UI Mockup. The earbuds resting on a sleek surface next to a smartphone showing the "Soundcore App" interface (generic equalizer or mode selection screen).
-> **Icons**: Icons representing "Gaming Controller" (Game Mode) and "Location Pin" (Find My Device) floating near the phone.
-> **Overlay Text**: Headline "アプリで広がる、多彩な機能", Subcopy "ゲーミングモード・「イヤホンを探す」機能".
+> Portrait of a beautiful Asian woman (30s) with glowing, radiant skin, smiling gently. She is touching her cheek or holding the lotion bottle near her face. Soft, natural morning light. High-end beauty commercial look.
+> **Overlay Text**: Headline "自信あふれる、輝く素肌へ", Subcopy "毎日のスキンケアを特別な時間に".
 
-## Image 6: Specs & Contents
+## Image 6: How to Use
 **Prompt**:
-> Flat lay photography on a clean light gray surface. Organized arrangement of: Soundcore Life P3 charging case, two earbuds, USB-C cable, and 5 pairs of eartips (XS/S/M/L/XL) lined up neatly.
-> **Overlay Text**: Headline "充実のパッケージ内容", Subcopy "最大35時間の長時間再生".
-> **Labels**: arrow pointing to tips "イヤーチップ 5サイズ", icon near case "ワイヤレス充電対応".
+> Minimalist 3-step diagram on a clean white/beige background.
+> Step 1 icon: Water splashing on face (Cleansing).
+> Step 2 image: The 3GF Lotion bottle (Lotion).
+> Step 3 icon: A jar of cream (Cream).
+> Arrows connecting them.
+> **Overlay Text**: Headline "効果的な使い方", Subcopy "ライン使いでさらに効果アップ".
 
-## Image 7: Usage Scenario / Comfort
+## Image 7: Brand Trust
 **Prompt**:
-> Close-up profile shot of a young Japanese woman wearing the earbud comfortably. Soft, natural lighting. She looks relaxed, perhaps reading a book or commuting on a clean train. Focus on the fit of the earbud in the ear.
-> **Overlay Text**: Headline "一日中、快適なつけ心地", Subcopy "人間工学に基づいたデザイン".
-> **Badge**: "IPX5防水" (water droplet icon).
+> A clean, modern cosmetic store interior, bright and white. A shelf display featuring "cos:mura" products. Or a logo shot of "cos:mura" on a premium textured wall.
+> **Overlay Text**: Headline "韓国美容のプロフェッショナル", Subcopy "cos:mura (コスムラ) 公式".
+> **Badges**: "日本公式販売店", "正規品".
 
-## Image 8: Trust & Warranty
+## Image 8: Summary
 **Prompt**:
-> Minimalist brand shot. The Soundcore logo (text) and Anker logo on a premium textured surface. The earbuds and case are presented like a jewel.
-> **Overlay Text**: Headline "世界で支持されるSoundcore", Subcopy "Ankerのオーディオブランド".
-> **Badges**: "最大24ヶ月保証" (Gold badge), "信頼のサポート" (Handshake or support icon).
+> Hero shot. The 3GF Lotion bottle on a podium with golden light rays radiating from behind. Luxurious and epic atmosphere.
+> **Overlay Text**: Headline "時を超えて、美しさを進化させる", Subcopy "TIMELESS EVOLUTION".
+> **Badges**: "3GF配合", "120ml".
