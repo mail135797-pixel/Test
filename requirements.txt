@@ -1,0 +1,7 @@
+pandas
+openpyxl
+img2pdf
+gdown
+opencv-python-headless
+pillow
+requests
