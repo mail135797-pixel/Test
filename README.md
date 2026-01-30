@@ -13,17 +13,26 @@
 
 ## Usage
 
-1.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+1.  **Prerequisites**:
+    - Install dependencies:
+      ```bash
+      pip install -r requirements.txt
+      ```
+    - **Google Drive Upload (Optional)**:
+      - Place your Google Service Account Key file in the project root directory.
+      - Rename the file to `service_account.json`.
+      - Ensure the service account has "Editor" access to the target Google Drive folder.
 
-2.  Run the analysis script:
+2.  **Run the analysis**:
     ```bash
     python analyze_video.py
     ```
+    - This script will:
+      1. Download the video.
+      2. Extract frames and create a PDF.
+      3. Generate the Excel file with product data.
+      4. Automatically upload the Excel and PDF files to Google Drive if `service_account.json` is present.
 
-## Notes
-- The video processing was performed using OpenCV.
-- Product data extraction was simulated/performed using AI vision capabilities on the extracted frames.
-- Upload to Google Drive was not possible due to lack of write credentials. The files are available in the `cursor_output` directory.
+## Security Note
+- `service_account.json` is added to `.gitignore` to prevent accidental commit of credentials to the repository.
+
