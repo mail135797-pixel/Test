@@ -18,10 +18,12 @@
       ```bash
       pip install -r requirements.txt
       ```
-    - **Google Drive Upload (Optional)**:
-      - Place your Google Service Account Key file in the project root directory.
-      - Rename the file to `service_account.json`.
-      - Ensure the service account has "Editor" access to the target Google Drive folder.
+    - **Google Drive Upload (OAuth 2.0)**:
+      - This project uses OAuth 2.0 to upload files to Google Drive using your personal account quota.
+      - **Step 1**: Download your OAuth 2.0 Client Secret JSON file from Google Cloud Console.
+      - **Step 2**: Rename the file to `client_secret.json` and place it in the project root directory.
+      - **Step 3**: The first time you run the script, a browser window will open asking you to authorize the app.
+      - **Step 4**: After authorization, a `token.json` file will be created automatically for future runs.
 
 2.  **Run the analysis**:
     ```bash
@@ -31,8 +33,7 @@
       1. Download the video.
       2. Extract frames and create a PDF.
       3. Generate the Excel file with product data.
-      4. Automatically upload the Excel and PDF files to Google Drive if `service_account.json` is present.
+      4. Upload the Excel and PDF files to Google Drive folder `1_LafaOLXNuTjJPdgyCCnuw_J4UgZYzjD`.
 
 ## Security Note
-- `service_account.json` is added to `.gitignore` to prevent accidental commit of credentials to the repository.
-
+- `client_secret.json` and `token.json` are added to `.gitignore` to prevent accidental commit of credentials to the repository.

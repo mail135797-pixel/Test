@@ -5,7 +5,9 @@ import img2pdf
 import pandas as pd
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
-from google.oauth2 import service_account
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
 
 # Setup directories
 OUTPUT_DIR = "cursor_output"
@@ -18,7 +20,8 @@ video_path = os.path.join(OUTPUT_DIR, "video.mp4")
 
 # Google Drive Upload Config
 TARGET_FOLDER_ID = "1_LafaOLXNuTjJPdgyCCnuw_J4UgZYzjD"
-SERVICE_ACCOUNT_FILE = "service_account.json"
+CLIENT_SECRET_FILE = "client_secret.json"
+TOKEN_FILE = "token.json"
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 def download_video():
@@ -91,15 +94,41 @@ def generate_excel():
     df.to_excel(output_path, index=False)
     print(f"Excel file created at {output_path}")
 
-def upload_files():
-    if not os.path.exists(SERVICE_ACCOUNT_FILE):
-        print(f"Warning: {SERVICE_ACCOUNT_FILE} not found. Skipping Google Drive upload.")
-        print("Please place the service account JSON key file in the root directory to enable upload.")
-        return
+def get_credentials():
+    creds = None
+    # The file token.json stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists(TOKEN_FILE):
+        creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
+    
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            if not os.path.exists(CLIENT_SECRET_FILE):
+                print(f"Error: {CLIENT_SECRET_FILE} not found.")
+                print("Please place your OAuth 2.0 Client Secret JSON file in the root directory and rename it to 'client_secret.json'.")
+                return None
+            
+            flow = InstalledAppFlow.from_client_secrets_file(
+                CLIENT_SECRET_FILE, SCOPES)
+            creds = flow.run_local_server(port=0)
+        
+        # Save the credentials for the next run
+        with open(TOKEN_FILE, 'w') as token:
+            token.write(creds.to_json())
+            
+    return creds
 
+def upload_files():
     try:
-        creds = service_account.Credentials.from_service_account_file(
-            SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+        creds = get_credentials()
+        if not creds:
+            print("Failed to obtain credentials. Skipping upload.")
+            return
+
         service = build('drive', 'v3', credentials=creds)
 
         files_to_upload = ["products.xlsx", "frames.pdf"]
@@ -121,14 +150,7 @@ def upload_files():
                 file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
                 print(f"File ID: {file.get('id')}")
             except Exception as e:
-                if "storageQuotaExceeded" in str(e):
-                    print("Error: Storage Quota Exceeded for Service Account.")
-                    print("Service accounts have 0 storage by default unless they are uploading to a Shared Drive (Team Drive) or a folder owned by another user where the storage counts against the owner.")
-                    print("However, if the target folder is in a standard 'My Drive', the file ownership defaults to the uploader (Service Account), which has 0 bytes quota.")
-                    print("To fix this, the folder owner should ensure the Service Account has 'Content Manager' or 'Editor' role, AND the upload logic might need adjustment if it's not a Shared Drive.")
-                    print(f"Detailed Error: {e}")
-                else:
-                    print(f"An error occurred during upload: {e}")
+                print(f"An error occurred during upload: {e}")
 
     except Exception as e:
         print(f"An error occurred during upload setup: {e}")
