@@ -1,0 +1,8 @@
+cursor_output/video.mp4
+cursor_output/frames/
+cursor_output/frames.pdf
+__pycache__/
+*.pyc
+service_account.json
+client_secret.json
+token.json
