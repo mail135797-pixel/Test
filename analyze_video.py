@@ -117,11 +117,21 @@ def upload_files():
             media = MediaFileUpload(file_path, resumable=True)
             
             print(f"Uploading {filename} to Google Drive...")
-            file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-            print(f"File ID: {file.get('id')}")
-            
+            try:
+                file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+                print(f"File ID: {file.get('id')}")
+            except Exception as e:
+                if "storageQuotaExceeded" in str(e):
+                    print("Error: Storage Quota Exceeded for Service Account.")
+                    print("Service accounts have 0 storage by default unless they are uploading to a Shared Drive (Team Drive) or a folder owned by another user where the storage counts against the owner.")
+                    print("However, if the target folder is in a standard 'My Drive', the file ownership defaults to the uploader (Service Account), which has 0 bytes quota.")
+                    print("To fix this, the folder owner should ensure the Service Account has 'Content Manager' or 'Editor' role, AND the upload logic might need adjustment if it's not a Shared Drive.")
+                    print(f"Detailed Error: {e}")
+                else:
+                    print(f"An error occurred during upload: {e}")
+
     except Exception as e:
-        print(f"An error occurred during upload: {e}")
+        print(f"An error occurred during upload setup: {e}")
 
 if __name__ == "__main__":
     download_video()
