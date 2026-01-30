@@ -3,7 +3,9 @@ import cv2
 import gdown
 import img2pdf
 import pandas as pd
-from PIL import Image
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+from google.oauth2 import service_account
 
 # Setup directories
 OUTPUT_DIR = "cursor_output"
@@ -13,6 +15,11 @@ os.makedirs(FRAMES_DIR, exist_ok=True)
 # Video URL and ID
 video_url = "https://drive.google.com/file/d/1tkRQ3vm1u3XOhOk6HBBCQEjshqGd6C3J/view"
 video_path = os.path.join(OUTPUT_DIR, "video.mp4")
+
+# Google Drive Upload Config
+TARGET_FOLDER_ID = "1_LafaOLXNuTjJPdgyCCnuw_J4UgZYzjD"
+SERVICE_ACCOUNT_FILE = "service_account.json"
+SCOPES = ['https://www.googleapis.com/auth/drive']
 
 def download_video():
     if os.path.exists(video_path):
@@ -84,7 +91,40 @@ def generate_excel():
     df.to_excel(output_path, index=False)
     print(f"Excel file created at {output_path}")
 
+def upload_files():
+    if not os.path.exists(SERVICE_ACCOUNT_FILE):
+        print(f"Warning: {SERVICE_ACCOUNT_FILE} not found. Skipping Google Drive upload.")
+        print("Please place the service account JSON key file in the root directory to enable upload.")
+        return
+
+    try:
+        creds = service_account.Credentials.from_service_account_file(
+            SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+        service = build('drive', 'v3', credentials=creds)
+
+        files_to_upload = ["products.xlsx", "frames.pdf"]
+        
+        for filename in files_to_upload:
+            file_path = os.path.join(OUTPUT_DIR, filename)
+            if not os.path.exists(file_path):
+                print(f"File {filename} not found, skipping.")
+                continue
+
+            file_metadata = {
+                'name': filename,
+                'parents': [TARGET_FOLDER_ID]
+            }
+            media = MediaFileUpload(file_path, resumable=True)
+            
+            print(f"Uploading {filename} to Google Drive...")
+            file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+            print(f"File ID: {file.get('id')}")
+            
+    except Exception as e:
+        print(f"An error occurred during upload: {e}")
+
 if __name__ == "__main__":
     download_video()
     process_video()
     generate_excel()
+    upload_files()
